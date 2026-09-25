@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Sunset — a boat for hire on San Francisco Bay for film, commercial and photo production.">
 <title>Sunset Boat Hire</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Barlow:wght@400;500;600&family=Space+Mono:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Source+Sans+3:wght@400;500;600&family=Courier+Prime:wght@400;700&family=Archivo:ital,wdth,wght@0,100,400;0,100,500;0,125,600;1,100,400&family=Jost:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<link rel="stylesheet" id="font-base" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
   :root {
     --cream: #F7F0DF;
@@ -44,11 +45,20 @@
     --eyebrow-color: var(--green-2);
     --body-size: 17px;
     --body-lh: 1.55;
+    --brand-weight: 600;
   }
   /* Ink colors — body text and headline base */
   :root[data-ink="charcoal"] { --ink: #221F1B; --ink-soft: #5A544B; }
   :root[data-ink="navy"]     { --ink: #152A3A; --ink-soft: #46596A; }
   :root[data-ink="espresso"] { --ink: #2C1F17; --ink-soft: #5F4B40; }
+  :root[data-ink="pine"]     { --ink: #0F3A2E; --ink-soft: #3C6054; }
+  :root[data-ink="petrol"]   { --ink: #123436; --ink-soft: #3F5F61; }
+  :root[data-ink="midnight"] { --ink: #111B2E; --ink-soft: #475168; }
+  :root[data-ink="slate"]    { --ink: #26303A; --ink-soft: #505B65; }
+  :root[data-ink="walnut"]   { --ink: #3B2A1E; --ink-soft: #66523F; }
+  :root[data-ink="oxblood"]  { --ink: #3A1A1C; --ink-soft: #6B4447; }
+  :root[data-ink="plum"]     { --ink: #2E1F2E; --ink-soft: #5E4C5E; }
+  :root[data-ink="graphite"] { --ink: #2A2A2A; --ink-soft: #5A5A5A; }
 
   /* Type directions */
   :root[data-type="callsheet"] {
@@ -79,12 +89,94 @@
     --display-weight: 500; --display-tracking: 0.01em; --display-scale: 0.94; --display-lh: 1.06;
     --em-style: italic; --em-weight: 400; --em-color: var(--red); --body-size: 18.5px; --body-lh: 1.5;
   }
+  :root[data-type="transomdeck"] {
+    --font-display: "Bodoni Moda", "Didot", "Bodoni 72", serif;
+    --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", Menlo, monospace;
+    --display-weight: 500; --display-tracking: -0.005em; --display-scale: 1.02; --display-lh: 1.02;
+    --em-style: italic; --em-weight: 400; --em-color: var(--red); --h-color: var(--green); --eyebrow-color: var(--ink-soft);
+  }
+  :root[data-type="harborlog"] {
+    --font-display: "Libre Caslon Display", "Big Caslon", Georgia, serif;
+    --font-body: "Libre Franklin", "Franklin Gothic Book", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", Menlo, monospace;
+    --display-weight: 400; --brand-weight: 400; --display-tracking: -0.01em; --display-scale: 1.1; --display-lh: 1.04;
+    --em-style: normal; --em-weight: 400; --em-color: var(--red); --body-size: 16.5px; --body-lh: 1.6;
+  }
+  :root[data-type="picturehouse"] {
+    --font-display: "DM Serif Display", Georgia, serif;
+    --font-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "DM Mono", Menlo, monospace;
+    --display-weight: 400; --brand-weight: 400; --display-tracking: -0.01em; --display-scale: 1; --display-lh: 1.04;
+    --em-style: italic; --em-weight: 400; --em-color: var(--red); --eyebrow-color: var(--red);
+  }
+  :root[data-type="riviera"] {
+    --font-display: "Cormorant Garamond", Garamond, Georgia, serif;
+    --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", Menlo, monospace;
+    --display-weight: 600; --display-tracking: -0.01em; --display-scale: 1.2; --display-lh: 0.98;
+    --em-style: italic; --em-weight: 500; --em-color: var(--green); --body-size: 16.5px; --body-lh: 1.65;
+  }
+  :root[data-type="festival"] {
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", Menlo, monospace;
+    --display-weight: 400; --brand-weight: 400; --display-tracking: -0.02em; --display-scale: 1.18; --display-lh: 0.98;
+    --em-style: italic; --em-weight: 400; --em-color: var(--red); --eyebrow-color: var(--red);
+  }
+  :root[data-type="seventies"] {
+    --font-display: "Abril Fatface", "Didot", Georgia, serif;
+    --font-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Space Mono", Menlo, monospace;
+    --display-weight: 400; --brand-weight: 400; --display-tracking: 0; --display-scale: 1; --display-lh: 1.02;
+    --em-style: normal; --em-weight: 400; --em-color: var(--red); --h-color: var(--green); --eyebrow-color: var(--red); --body-size: 17.5px;
+  }
+  :root[data-type="pier"] {
+    --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+    --font-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Space Mono", Menlo, monospace;
+    --display-weight: 800; --brand-weight: 800; --display-case: uppercase; --display-tracking: 0.01em; --display-scale: 1.14; --display-lh: 0.92;
+    --em-style: normal; --em-weight: 800; --em-color: var(--red); --h-color: var(--green); --eyebrow-color: var(--red);
+  }
+  :root[data-type="regatta"] {
+    --font-display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", Menlo, monospace;
+    --display-weight: 700; --brand-weight: 700; --display-tracking: -0.035em; --display-scale: 0.98; --display-lh: 1;
+    --em-style: normal; --em-weight: 700; --em-color: var(--red); --eyebrow-color: var(--ink-soft); --body-size: 16.5px;
+  }
+  :root[data-type="chartplotter"] {
+    --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Space Mono", Menlo, monospace;
+    --display-weight: 500; --display-tracking: -0.02em; --display-scale: 0.98; --display-lh: 1.04;
+    --em-style: normal; --em-weight: 500; --em-color: var(--green-2); --eyebrow-color: var(--green-2);
+  }
+  :root[data-type="screenplay"] {
+    --font-display: "Courier Prime", "Courier New", monospace;
+    --font-body: "Courier Prime", "Courier New", monospace;
+    --font-mono: "Courier Prime", "Courier New", monospace;
+    --display-weight: 700; --brand-weight: 700; --display-case: uppercase; --display-tracking: 0.02em; --display-scale: 0.78; --display-lh: 1.15;
+    --em-style: normal; --em-weight: 700; --em-color: var(--red); --eyebrow-color: var(--ink-soft); --body-size: 16.5px; --body-lh: 1.6;
+  }
   /* Cream tone options — chosen from the Background picker; the page commits to a single light look */
   :root[data-cream="ivory"]      { --cream: #FBF8F0; --cream-2: #F3EDDF; --surface: #FFFFFF; --sand: #E6DEC9; }
   :root[data-cream="linen"]      { --cream: #F4F1E8; --cream-2: #EBE6D8; --surface: #FBFAF6; --sand: #DCD5C2; }
   :root[data-cream="buttermilk"] { --cream: #F8F2DA; --cream-2: #F1E8C4; --surface: #FCF9EC; --sand: #E3D6A8; }
   :root[data-cream="sand"]       { --cream: #F0E5C9; --cream-2: #E7D9B4; --surface: #F8F0DC; --sand: #D8C89B; }
   :root[data-cream="seafoam"]    { --cream: #F1F2E5; --cream-2: #E6E9D6; --surface: #F9FAF2; --sand: #D3D8BF; }
+  :root[data-cream="parchment"]  { --cream: #F3EAD3; --cream-2: #EDE3CA; --surface: #FAF4E4; --sand: #DCCDA6; }
+  :root[data-cream="honey"]      { --cream: #F6EACB; --cream-2: #F0E2BE; --surface: #FBF4E0; --sand: #E0C98F; }
+  :root[data-cream="sailcloth"]  { --cream: #F6F1E4; --cream-2: #ECE5D2; --surface: #FCFAF3; --sand: #DDD3BA; }
+  :root[data-cream="oat"]        { --cream: #EFE8DA; --cream-2: #E9E1CF; --surface: #F8F4EB; --sand: #D3C6AB; }
+  :root[data-cream="apricot"]    { --cream: #FAEFE2; --cream-2: #F2E1CE; --surface: #FDF8F1; --sand: #E6CDB2; }
+  :root[data-cream="blush"]      { --cream: #F7ECE6; --cream-2: #F1E3DB; --surface: #FCF7F4; --sand: #E0C8BC; }
+  :root[data-cream="chalk"]      { --cream: #F7F6F2; --cream-2: #EDEBE4; --surface: #FFFFFF; --sand: #D9D6CC; }
+  :root[data-cream="oyster"]     { --cream: #F2EFE7; --cream-2: #E8E3D8; --surface: #FAF8F3; --sand: #D6D0C2; }
+  :root[data-cream="bone"]       { --cream: #EFEBE1; --cream-2: #E8E3D6; --surface: #F8F6F0; --sand: #D2CAB7; }
+  :root[data-cream="sage"]       { --cream: #EDEFE2; --cream-2: #E0E4D2; --surface: #F6F8EF; --sand: #C9D0B6; }
+  :root[data-cream="fog"]        { --cream: #EEF0EC; --cream-2: #E2E6E0; --surface: #F7F8F5; --sand: #CDD3CB; }
+  :root[data-cream="harbor"]     { --cream: #EEF1F0; --cream-2: #E1E7E7; --surface: #F7F9F8; --sand: #CAD4D5; }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -140,7 +232,7 @@
   }
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
   .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
-  .brand .name { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: 600; letter-spacing: -0.01em; color: var(--h-color); }
+  .brand .name { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: var(--brand-weight); letter-spacing: -0.01em; color: var(--h-color); }
   .brand .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
   .nav-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
   .nav-links a { text-decoration: none; color: var(--ink-soft); }
@@ -330,8 +422,13 @@
   .picker .eyebrow { display: flex; justify-content: space-between; align-items: center; }
   .picker .eyebrow button { font: inherit; color: var(--ink-soft); background: none; border: 0; cursor: pointer; letter-spacing: 0; text-transform: none; padding: 0; }
   .picker select { padding: 8px 10px; font-size: 14px; }
-  .picker .swatches { display: flex; gap: 6px; }
-  .picker .swatches button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
+  .picker .swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+  .picker optgroup { font-style: normal; font-weight: 600; }
+  .picker .actions { display: flex; gap: 8px; }
+  .picker .actions button { flex: 1; font: 600 13px/1 var(--font-body); padding: 9px 10px; border-radius: 999px; cursor: pointer; border: 1px solid var(--line); background: var(--cream); color: var(--ink); }
+  .picker .actions button.primary { background: var(--green); border-color: var(--green); color: #F7F0DF; }
+  .picker .combo { font-family: var(--font-mono); font-size: 11px; color: var(--ink); letter-spacing: 0.02em; }
+  .picker .swatches button { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
   .picker .swatches button[aria-pressed="true"] { border-color: var(--red); box-shadow: 0 0 0 2px var(--surface) inset; }
   .picker .hexes { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.02em; }
   .picker label.check { display: flex; align-items: center; gap: 8px; text-transform: none; letter-spacing: 0; font-family: var(--font-body); font-size: 13.5px; color: var(--ink); cursor: pointer; }
@@ -588,12 +685,30 @@
   <p class="eyebrow"><span>Background</span><button type="button" id="picker-toggle" aria-expanded="true">hide</button></p>
   <div class="picker-body">
     <select id="cream-select" aria-label="Cream tone">
-      <option value="warm">Warm cream (current)</option>
-      <option value="ivory">Ivory — lightest, near white</option>
-      <option value="linen">Linen — cooler, soft grey-cream</option>
-      <option value="buttermilk">Buttermilk — yellow-leaning</option>
-      <option value="sand">Sand — deepest, beachy</option>
-      <option value="seafoam">Seafoam cream — faint green tint</option>
+      <optgroup label="Warm">
+        <option value="warm">Warm cream (current)</option>
+        <option value="buttermilk">Buttermilk — yellow-leaning</option>
+        <option value="sand">Sand — deepest, beachy</option>
+        <option value="parchment">Parchment — aged paper</option>
+        <option value="honey">Honey — deeper golden</option>
+        <option value="sailcloth">Sailcloth — clean off-white</option>
+        <option value="oat">Oat — toasted, neutral-warm</option>
+        <option value="apricot">Apricot — sunset glow</option>
+        <option value="blush">Blush — faint rosé</option>
+      </optgroup>
+      <optgroup label="Neutral">
+        <option value="ivory">Ivory — lightest, near white</option>
+        <option value="chalk">Chalk — near white, no tint</option>
+        <option value="linen">Linen — cooler, soft grey-cream</option>
+        <option value="oyster">Oyster — shell grey</option>
+        <option value="bone">Bone — muted gallery tone</option>
+      </optgroup>
+      <optgroup label="Cool / tinted">
+        <option value="seafoam">Seafoam cream — faint green tint</option>
+        <option value="sage">Sage — stronger green tint</option>
+        <option value="fog">Fog — grey-green, Karl the Fog</option>
+        <option value="harbor">Harbor — faint blue</option>
+      </optgroup>
     </select>
     <div class="swatches" id="swatches"></div>
     <div class="hexes" id="hexes"></div>
@@ -601,21 +716,57 @@
     <hr class="rule">
     <label for="type-select" class="eyebrow" style="display:block">Typography</label>
     <select id="type-select" aria-label="Type direction">
-      <option value="editorial">Golden hour editorial (current)</option>
-      <option value="callsheet">Call sheet</option>
-      <option value="transom">Transom</option>
-      <option value="titlecard">Title card</option>
-      <option value="westcoast">West Coast modern</option>
+      <optgroup label="Serif headlines">
+        <option value="editorial">Golden hour editorial (current)</option>
+        <option value="transom">Transom</option>
+        <option value="transomdeck">Transom · deck recipe</option>
+        <option value="harborlog">Harbor log</option>
+        <option value="picturehouse">Picture house</option>
+        <option value="riviera">Riviera</option>
+        <option value="festival">Festival program</option>
+        <option value="seventies">Golden Gate '72</option>
+      </optgroup>
+      <optgroup label="Sans headlines">
+        <option value="callsheet">Call sheet</option>
+        <option value="titlecard">Title card</option>
+        <option value="westcoast">West Coast modern</option>
+        <option value="pier">Pier signage</option>
+        <option value="regatta">Regatta</option>
+        <option value="chartplotter">Chart plotter</option>
+      </optgroup>
+      <optgroup label="Typewriter">
+        <option value="screenplay">Screenplay</option>
+      </optgroup>
     </select>
     <p class="hexes" id="type-note"></p>
     <label for="ink-select" class="eyebrow" style="display:block">Ink color</label>
     <select id="ink-select" aria-label="Ink color">
-      <option value="green">Deep green-black (current)</option>
-      <option value="charcoal">Warm charcoal</option>
-      <option value="navy">Bay navy</option>
-      <option value="espresso">Espresso</option>
+      <optgroup label="Greens and blues">
+        <option value="green">Deep green-black (current)</option>
+        <option value="pine">Pine</option>
+        <option value="petrol">Petrol</option>
+        <option value="navy">Bay navy</option>
+        <option value="midnight">Midnight</option>
+        <option value="slate">Slate</option>
+      </optgroup>
+      <optgroup label="Warm">
+        <option value="espresso">Espresso</option>
+        <option value="walnut">Walnut</option>
+        <option value="oxblood">Oxblood</option>
+        <option value="plum">Plum</option>
+      </optgroup>
+      <optgroup label="Neutral">
+        <option value="charcoal">Warm charcoal</option>
+        <option value="graphite">Graphite</option>
+      </optgroup>
     </select>
     <p class="hexes" id="ink-note"></p>
+    <hr class="rule">
+    <div class="actions">
+      <button type="button" class="primary" id="picker-shuffle">Shuffle</button>
+      <button type="button" id="picker-reset">Reset</button>
+    </div>
+    <p class="combo" id="picker-combo" aria-live="polite"></p>
   </div>
 </aside>
 
@@ -725,7 +876,19 @@
     linen:      { bg: "#F4F1E8", alt: "#EBE6D8" },
     buttermilk: { bg: "#F8F2DA", alt: "#F1E8C4" },
     sand:       { bg: "#F0E5C9", alt: "#E7D9B4" },
-    seafoam:    { bg: "#F1F2E5", alt: "#E6E9D6" }
+    seafoam:    { bg: "#F1F2E5", alt: "#E6E9D6" },
+    parchment:  { bg: "#F3EAD3", alt: "#EDE3CA" },
+    honey:      { bg: "#F6EACB", alt: "#F0E2BE" },
+    sailcloth:  { bg: "#F6F1E4", alt: "#ECE5D2" },
+    oat:        { bg: "#EFE8DA", alt: "#E9E1CF" },
+    apricot:    { bg: "#FAEFE2", alt: "#F2E1CE" },
+    blush:      { bg: "#F7ECE6", alt: "#F1E3DB" },
+    chalk:      { bg: "#F7F6F2", alt: "#EDEBE4" },
+    oyster:     { bg: "#F2EFE7", alt: "#E8E3D8" },
+    bone:       { bg: "#EFEBE1", alt: "#E8E3D6" },
+    sage:       { bg: "#EDEFE2", alt: "#E0E4D2" },
+    fog:        { bg: "#EEF0EC", alt: "#E2E6E0" },
+    harbor:     { bg: "#EEF1F0", alt: "#E1E7E7" }
   };
   var root = document.documentElement;
   var sel = document.getElementById("cream-select");
@@ -735,7 +898,7 @@
   var picker = document.getElementById("picker");
   var toggle = document.getElementById("picker-toggle");
 
-  Object.keys(CREAMS).forEach(function (k) {
+  Array.prototype.map.call(sel.options, function (o) { return o.value; }).forEach(function (k) {
     var b = document.createElement("button");
     b.type = "button"; b.style.background = CREAMS[k].bg; b.title = sel.querySelector('[value="' + k + '"]').textContent;
     b.setAttribute("aria-label", b.title); b.dataset.k = k;
@@ -750,6 +913,7 @@
     Array.prototype.forEach.call(sw.children, function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); });
     hexes.textContent = "page " + CREAMS[k].bg + " · alt sections " + CREAMS[k].alt;
     try { localStorage.setItem("sunset-cream", k); } catch (e) {}
+    updateCombo();
   }
   function applyBand(green) {
     if (green) root.removeAttribute("data-band"); else root.setAttribute("data-band", "cream");
@@ -765,27 +929,63 @@
   });
 
   // ---- Typography + ink ----
+  var GF = "https://fonts.googleapis.com/css2?family=";
   var TYPES = {
-    editorial: "Fraunces · Instrument Sans · IBM Plex Mono. Soft serif with true italics; reads like a West Coast travel feature. Warm and welcoming.",
-    callsheet: "Barlow Condensed caps · Barlow · Space Mono. Built like a production document: tall, tight, no-nonsense. Red eyebrows carry the color.",
-    transom:   "Bodoni Moda · Source Sans 3 · Courier Prime. High-contrast Didone like a name painted on a transom; screenplay Courier for the spec sheet. Headlines in green.",
-    titlecard: "Archivo Expanded caps · Archivo · Courier Prime. Wide, tracked title-card lettering. The most cinematic and the coolest in tone.",
-    westcoast: "Jost · Newsreader · Space Mono. Geometric mid-century sans over a serif body. 1960s Sunset-magazine modern, relaxed and sunny."
+    editorial:    { note: "Fraunces · Instrument Sans · IBM Plex Mono. Soft serif with true italics; reads like a West Coast travel feature. Warm and welcoming.", fonts: null },
+    transom:      { note: "Bodoni Moda · Source Sans 3 · Courier Prime. High-contrast Didone like a name painted on a transom; screenplay Courier for the spec sheet. Headlines in green.", fonts: ["Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400", "Source+Sans+3:wght@400;500;600", "Courier+Prime:wght@400;700"] },
+    transomdeck:  { note: "Bodoni Moda · Archivo · IBM Plex Mono. The version recommended in the style deck: Didone headlines in green, one shared sans for body, Plex Mono for specs.", fonts: ["Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400", "Archivo:wght@400;500;600", "IBM+Plex+Mono:wght@400;500"] },
+    harborlog:    { note: "Libre Caslon Display · Libre Franklin · IBM Plex Mono. Old American newspaper and ship's-log classic. Trustworthy and a little historic; red for emphasis instead of italics.", fonts: ["Libre+Caslon+Display", "Libre+Franklin:ital,wght@0,400;0,500;0,600;1,400", "IBM+Plex+Mono:wght@400;500"] },
+    picturehouse: { note: "DM Serif Display · DM Sans · DM Mono. Old movie-palace marquee: a chunky, friendly high-contrast serif over a clean modern body.", fonts: ["DM+Serif+Display:ital@0;1", "DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400", "DM+Mono:wght@400;500"] },
+    riviera:      { note: "Cormorant Garamond · Manrope · JetBrains Mono. Yacht-charter luxury: tall, fine Garamond with airy spacing. The most elegant, and the quietest.", fonts: ["Cormorant+Garamond:ital,wght@0,500;0,600;1,500", "Manrope:wght@400;500;600", "JetBrains+Mono:wght@400;500"] },
+    festival:     { note: "Instrument Serif · Instrument Sans · JetBrains Mono. Film-festival program: a narrow, sharp serif set large, with italic asides in red.", fonts: ["Instrument+Serif:ital@0;1", "Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400", "JetBrains+Mono:wght@400;500"] },
+    seventies:    { note: "Abril Fatface · Karla · Space Mono. A 1970s poster fat face, like a vintage regatta print. Bold, warm and a little nostalgic.", fonts: ["Abril+Fatface", "Karla:ital,wght@0,400;0,500;0,600;1,400", "Space+Mono:wght@400;700"] },
+    callsheet:    { note: "Barlow Condensed caps · Barlow · Space Mono. Built like a production document: tall, tight, no-nonsense. Red eyebrows carry the color.", fonts: ["Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500", "Barlow:wght@400;500;600", "Space+Mono:wght@400;700"] },
+    titlecard:    { note: "Archivo Expanded caps · Archivo · Courier Prime. Wide, tracked title-card lettering. The most cinematic and the coolest in tone.", fonts: ["Archivo:ital,wdth,wght@0,100,400;0,100,500;0,125,600;1,100,400", "Courier+Prime:wght@400;700"] },
+    westcoast:    { note: "Jost · Newsreader · Space Mono. Geometric mid-century sans over a serif body. 1960s Sunset-magazine modern, relaxed and sunny.", fonts: ["Jost:ital,wght@0,400;0,500;0,600;1,400", "Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400", "Space+Mono:wght@400;700"] },
+    pier:         { note: "Big Shoulders Display caps · Public Sans · Space Mono. Waterfront pier signage: tall, heavy, industrial capitals. Loud and very legible.", fonts: ["Big+Shoulders+Display:wght@700;800", "Public+Sans:ital,wght@0,400;0,500;0,600;1,400", "Space+Mono:wght@400;700"] },
+    regatta:      { note: "Inter Tight · Inter · JetBrains Mono. Swiss-style racing poster: a tight, bold, modern grotesk. Clean and brand-client friendly.", fonts: ["Inter+Tight:wght@600;700", "Inter:wght@400;500;600", "JetBrains+Mono:wght@400;500"] },
+    chartplotter: { note: "Space Grotesk · IBM Plex Sans · Space Mono. Marine electronics and nav charts: technical, slightly quirky, modern. Green accents instead of red.", fonts: ["Space+Grotesk:wght@400;500;600", "IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400", "Space+Mono:wght@400;700"] },
+    screenplay:   { note: "Courier Prime throughout. The page reads like a shooting script: all-caps sluglines over a typewriter body. A bold gimmick for a film audience.", fonts: ["Courier+Prime:ital,wght@0,400;0,700;1,400"] }
   };
   var INKS = {
     green:    "#17302A — ties the text to the green band and the water.",
-    charcoal: "#221F1B — most neutral; red and green stay the only colors on the page.",
+    pine:     "#0F3A2E — greener and more saturated; matches the canvas covers.",
+    petrol:   "#123436 — blue-green, like the Bay on an overcast day.",
     navy:     "#152A3A — cooler, nautical; contrasts hardest with the red.",
-    espresso: "#2C1F17 — warmest; sits into the cream like ink on paper."
+    midnight: "#111B2E — the deepest blue-black; crisp and formal.",
+    slate:    "#26303A — cool grey-blue; softer than navy.",
+    espresso: "#2C1F17 — warmest; sits into the cream like ink on paper.",
+    walnut:   "#3B2A1E — a lighter brown than espresso; pairs with the teak.",
+    oxblood:  "#3A1A1C — dark red-brown that echoes the tanbark sails.",
+    plum:     "#2E1F2E — dusky evening purple; unusual and moody.",
+    charcoal: "#221F1B — most neutral warm; red and green stay the only colors on the page.",
+    graphite: "#2A2A2A — pure neutral grey, no warmth at all."
   };
   var typeSel = document.getElementById("type-select");
   var inkSel = document.getElementById("ink-select");
+  var comboEl = document.getElementById("picker-combo");
+  var fontsLoaded = { editorial: true };
+  function ensureFonts(k) {
+    if (fontsLoaded[k] || !TYPES[k].fonts) return;
+    var l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = GF + TYPES[k].fonts.join("&family=") + "&display=swap";
+    document.head.appendChild(l);
+    fontsLoaded[k] = true;
+  }
+  function label(selEl) { var o = selEl.options[selEl.selectedIndex]; return o ? o.textContent.split(" — ")[0].replace(" (current)", "") : ""; }
+  function updateCombo() {
+    if (!comboEl || !typeSel || !inkSel) return;
+    comboEl.textContent = "Combo: " + label(sel) + " · " + label(typeSel) + " · " + label(inkSel);
+  }
   function applyType(k) {
     if (!TYPES[k]) k = "editorial";
+    ensureFonts(k);
     if (k === "editorial") root.removeAttribute("data-type"); else root.setAttribute("data-type", k);
     typeSel.value = k;
-    document.getElementById("type-note").textContent = TYPES[k];
+    document.getElementById("type-note").textContent = TYPES[k].note;
     try { localStorage.setItem("sunset-type", k); } catch (e) {}
+    updateCombo();
   }
   function applyInk(k) {
     if (!INKS[k]) k = "green";
@@ -793,9 +993,18 @@
     inkSel.value = k;
     document.getElementById("ink-note").textContent = INKS[k];
     try { localStorage.setItem("sunset-ink", k); } catch (e) {}
+    updateCombo();
   }
   typeSel.addEventListener("change", function () { applyType(typeSel.value); });
   inkSel.addEventListener("change", function () { applyInk(inkSel.value); });
+
+  function pick(obj) { var ks = Object.keys(obj); return ks[Math.floor(Math.random() * ks.length)]; }
+  document.getElementById("picker-shuffle").addEventListener("click", function () {
+    applyCream(pick(CREAMS)); applyType(pick(TYPES)); applyInk(pick(INKS));
+  });
+  document.getElementById("picker-reset").addEventListener("click", function () {
+    applyCream("warm"); applyBand(true); applyType("editorial"); applyInk("green");
+  });
 
   var startCream = "warm", startBand = true, startType = "editorial", startInk = "green";
   try {
