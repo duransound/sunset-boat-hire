@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sunset — a boat for hire on San Francisco Bay for film, commercial and photo production.">
 <title>Sunset Boat Hire</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Barlow:wght@400;500;600&family=Space+Mono:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Source+Sans+3:wght@400;500;600&family=Courier+Prime:wght@400;700&family=Archivo:ital,wdth,wght@0,100,400;0,100,500;0,125,600;1,100,400&family=Jost:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
 <style>
@@ -82,20 +88,56 @@
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--font-body); font-size: var(--body-size); line-height: var(--body-lh); -webkit-font-smoothing: antialiased; }
-  h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); font-stretch: var(--display-stretch); text-transform: var(--display-case); letter-spacing: var(--display-tracking); line-height: var(--display-lh); color: var(--h-color); margin: 0; text-wrap: balance; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    line-height: var(--body-lh);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display); font-weight: var(--display-weight); font-stretch: var(--display-stretch);
+    text-transform: var(--display-case); letter-spacing: var(--display-tracking);
+    line-height: var(--display-lh); color: var(--h-color); margin: 0; text-wrap: balance;
+  }
   p { margin: 0; }
   a { color: inherit; }
   img { max-width: 100%; display: block; }
   .wrap { width: min(1120px, 100%); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
-  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--eyebrow-color); }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--eyebrow-color);
+  }
   .section { padding-block: clamp(56px, 8vw, 104px); }
   .section-head { display: grid; gap: 14px; max-width: 640px; margin-bottom: clamp(28px, 4vw, 48px); }
   .section-head h2 { font-size: calc(clamp(32px, 4.4vw, 48px) * var(--display-scale)); }
   .section-head p { color: var(--ink-soft); max-width: 58ch; }
   .rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
-  .ph { color: var(--red); font-family: var(--font-mono); font-size: 0.86em; background: rgba(196, 64, 44, 0.08); border: 1px dashed rgba(196, 64, 44, 0.5); border-radius: 4px; padding: 0 6px; white-space: nowrap; }
-  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--cream) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+
+  /* Placeholders — everything you still need to fill in looks like this */
+  .ph {
+    color: var(--red);
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: rgba(196, 64, 44, 0.08);
+    border: 1px dashed rgba(196, 64, 44, 0.5);
+    border-radius: 4px;
+    padding: 0 6px;
+    white-space: nowrap;
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
   .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
   .brand .name { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: 600; letter-spacing: -0.01em; color: var(--h-color); }
@@ -103,8 +145,15 @@
   .nav-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
   .nav-links a { text-decoration: none; color: var(--ink-soft); }
   .nav-links a:hover { color: var(--green); }
-  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 999px; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .15s ease, background .15s ease; }
-  .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-body); font-weight: 600; font-size: 15px;
+    padding: 12px 20px; border-radius: 999px; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .15s ease, background .15s ease;
+  }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--gold); outline-offset: 2px;
+  }
   .btn-red { background: var(--red); color: #FFF6E8; }
   .btn-red:hover { background: var(--red-deep); transform: translateY(-1px); }
   .btn-green { background: var(--green); color: var(--cream); }
@@ -112,6 +161,8 @@
   .btn-ghost { background: transparent; color: var(--green); border-color: var(--line); }
   .btn-ghost:hover { background: var(--green-tint); }
   @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Hero: normal contained layout, photo is a 16:9 frame under the text */
   .hero { padding-block: clamp(36px, 6vw, 72px) clamp(40px, 6vw, 72px); }
   .hero h1 { font-size: calc(clamp(40px, 5.4vw, 68px) * var(--display-scale)); max-width: 18ch; }
   .hero h1 em { font-style: var(--em-style); font-weight: var(--em-weight); color: var(--em-color); }
@@ -124,10 +175,31 @@
   .hero-frame .film-frame { inset: 14px; }
   .hero-frame .rec { top: 22px; right: 26px; }
   .hero-frame .caption { position: absolute; left: 26px; bottom: 20px; color: #FFF6E8; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
-  .slot { position: relative; overflow: hidden; border-radius: 14px; max-width: 100%; background: radial-gradient(ellipse 70% 45% at 55% 58%, rgba(255, 220, 150, 0.55), transparent 65%), linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 42%, var(--sky-3) 58%, var(--water-1) 60%, var(--water-2) 100%); box-shadow: var(--shadow); }
-  .slot::before { content: ""; position: absolute; left: 0; right: 0; top: 60%; height: 40%; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 9px); mix-blend-mode: overlay; }
-  .slot .sun { position: absolute; width: 18%; aspect-ratio: 1; border-radius: 50%; left: 46%; top: 44%; background: radial-gradient(circle, #FFF2C7 0%, var(--gold) 55%, rgba(233,180,91,0) 72%); filter: blur(1px); }
-  .slot .label { position: absolute; inset: auto 14px 14px 14px; display: flex; justify-content: space-between; align-items: end; gap: 10px; color: #FFF6E8; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+
+  /* Painted sunset used behind every photo slot until real photos arrive */
+  .slot {
+    position: relative; overflow: hidden; border-radius: 14px; max-width: 100%;
+    background:
+      radial-gradient(ellipse 70% 45% at 55% 58%, rgba(255, 220, 150, 0.55), transparent 65%),
+      linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 42%, var(--sky-3) 58%, var(--water-1) 60%, var(--water-2) 100%);
+    box-shadow: var(--shadow);
+  }
+  .slot::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 60%; height: 40%;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 9px);
+    mix-blend-mode: overlay;
+  }
+  .slot .sun {
+    position: absolute; width: 18%; aspect-ratio: 1; border-radius: 50%; left: 46%; top: 44%;
+    background: radial-gradient(circle, #FFF2C7 0%, var(--gold) 55%, rgba(233,180,91,0) 72%);
+    filter: blur(1px);
+  }
+  .slot .label {
+    position: absolute; inset: auto 14px 14px 14px;
+    display: flex; justify-content: space-between; align-items: end; gap: 10px;
+    color: #FFF6E8; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
   .slot .label b { font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); font-size: calc(18px * var(--display-scale)); letter-spacing: 0; }
   .slot .label .todo { color: #FFD9A6; border: 1px dashed rgba(255,217,166,0.7); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
   .slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -138,11 +210,16 @@
   .hero .slot { aspect-ratio: 4 / 5; }
   .hero .slot .sun { width: 22%; }
   .film-frame { position: absolute; inset: 12px; border: 1px solid rgba(255,246,232,0.45); border-radius: 8px; pointer-events: none; }
-  .film-frame::after { content: "SUNSET · SF BAY · 24fps"; position: absolute; top: 10px; left: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,246,232,0.85); }
+  .film-frame::after {
+    content: "SUNSET · SF BAY · 24fps"; position: absolute; top: 10px; left: 12px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,246,232,0.85);
+  }
   .rec { position: absolute; top: 22px; right: 24px; display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,246,232,0.9); letter-spacing: 0.1em; }
   .rec i { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); animation: blink 1.6s infinite; }
   @keyframes blink { 50% { opacity: 0.25; } }
   @media (prefers-reduced-motion: reduce) { .rec i { animation: none; } html { scroll-behavior: auto; } }
+
+  /* Commercial */
   .reel { background: var(--green); color: var(--cream); --line: rgba(247, 240, 223, 0.2); }
   :root[data-band="cream"] .reel { background: var(--cream-2); color: var(--ink); --line: rgba(31, 77, 58, 0.22); }
   :root[data-band="cream"] .reel h2 { color: var(--h-color); }
@@ -152,17 +229,31 @@
   .reel h2 { font-size: calc(clamp(32px, 4.4vw, 52px) * var(--display-scale)); max-width: 20ch; color: #F7F0DF; }
   .reel p { color: rgba(247, 240, 223, 0.8); max-width: 68ch; margin-top: 16px; }
   .reel .btn-red { margin-top: 26px; }
-  .player { margin-top: clamp(28px, 4vw, 44px); position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; background: #17302A; display: block; box-shadow: var(--shadow); }
+  .player {
+    margin-top: clamp(28px, 4vw, 44px);
+    position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden;
+    background: #17302A; display: block; box-shadow: var(--shadow);
+  }
   .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; display: block; }
   .player .strip { position: absolute; left: 0; right: 0; top: 0; padding: 12px 16px; background: linear-gradient(rgba(23,48,42,0.75), transparent); color: #F7F0DF; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; display: flex; justify-content: space-between; gap: 12px; pointer-events: none; }
   .player.playing .strip { opacity: 0; transition: opacity .4s; }
+
+  /* Gallery */
   .gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px; gap: 14px; }
   .gallery .slot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .gallery .slot:nth-child(2) { grid-row: span 2; }
   .gallery .slot:nth-child(3) { grid-column: span 2; }
   .gallery .slot:nth-child(6) { grid-column: span 2; }
-  @media (max-width: 720px) { .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; grid-auto-flow: dense; } .gallery .slot:nth-child(1) { grid-column: span 2; grid-row: span 1; } .gallery .slot:nth-child(2) { grid-row: span 1; } .gallery .slot:nth-child(3) { grid-column: span 2; } .gallery .slot:nth-child(6) { grid-column: span 1; } }
+  @media (max-width: 720px) {
+    .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; grid-auto-flow: dense; }
+    .gallery .slot:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .gallery .slot:nth-child(2) { grid-row: span 1; }
+    .gallery .slot:nth-child(3) { grid-column: span 2; }
+    .gallery .slot:nth-child(6) { grid-column: span 1; }
+  }
   .gallery .slot .sun { width: 14%; }
+
+  /* Production notes (call-sheet style) */
   .notes { background: var(--cream-2); }
   .sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
   .sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 18px 24px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
@@ -179,20 +270,29 @@
   dd { margin: 0; padding: 10px 0; border-top: 1px solid var(--line); font-size: 16px; }
   dl > div:first-child dt, dl > div:first-child dd { border-top: 0; }
   .sheet-foot { padding: 16px 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+
+  /* Location */
   .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
   @media (max-width: 860px) { .loc-grid { grid-template-columns: 1fr; } }
   .loc-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
   .loc-list div { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
   .loc-list b { font-weight: 500; }
   .loc-list small { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; text-align: right; }
-  .map { position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--green-tint); border: 1px solid var(--line); }
+  .map {
+    position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 14px; overflow: hidden;
+    background: var(--green-tint); border: 1px solid var(--line);
+  }
   .map svg { width: 100%; height: 100%; display: block; }
+
+  /* Process */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
   .step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 10px; align-content: start; }
   .step .n { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(40px * var(--display-scale)); font-weight: var(--em-weight); font-style: var(--em-style); color: var(--red); line-height: 1; }
   .step h3 { font-size: calc(22px * var(--display-scale)); }
   .step p { color: var(--ink-soft); font-size: 15.5px; }
+
+  /* Contact */
   .contact { background: var(--cream-2); }
   .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
   @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
@@ -207,7 +307,10 @@
   @media (max-width: 560px) { .f-row { grid-template-columns: 1fr; } }
   .field { display: grid; gap: 6px; }
   label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
-  input, select, textarea { font: inherit; font-size: 16px; color: var(--ink); background: var(--cream); border: 1px solid var(--line); border-radius: 8px; padding: 11px 12px; width: 100%; }
+  input, select, textarea {
+    font: inherit; font-size: 16px; color: var(--ink); background: var(--cream);
+    border: 1px solid var(--line); border-radius: 8px; padding: 11px 12px; width: 100%;
+  }
   textarea { min-height: 120px; resize: vertical; }
   .f-note { font-size: 13.5px; color: var(--ink-soft); }
   .f-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
@@ -216,7 +319,14 @@
   .result h3 { font-size: calc(22px * var(--display-scale)); color: var(--green); }
   .result pre { font-family: var(--font-mono); font-size: 13px; white-space: pre-wrap; margin: 0; background: var(--surface); border-radius: 8px; padding: 14px; max-height: 260px; overflow: auto; color: var(--ink); }
   .result .f-actions { gap: 10px; }
-  .picker { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 12px 14px; display: grid; gap: 8px; width: min(280px, calc(100vw - 32px)); font-size: 13px; max-height: calc(100vh - 40px); overflow: auto; }
+
+  /* Background picker (design-review tool; remove before going live) */
+  .picker {
+    position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+    padding: 12px 14px; display: grid; gap: 8px; width: min(280px, calc(100vw - 32px));
+    font-size: 13px; max-height: calc(100vh - 40px); overflow: auto;
+  }
   .picker .eyebrow { display: flex; justify-content: space-between; align-items: center; }
   .picker .eyebrow button { font: inherit; color: var(--ink-soft); background: none; border: 0; cursor: pointer; letter-spacing: 0; text-transform: none; padding: 0; }
   .picker select { padding: 8px 10px; font-size: 14px; }
@@ -229,10 +339,14 @@
   .picker-collapsed { display: none; }
   .picker.min .picker-body { display: none; }
   .picker.min .picker-collapsed { display: inline; }
+
+  /* Footer */
   footer { padding-block: 32px 40px; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--ink-soft); }
   footer .brand .name { font-size: calc(20px * var(--display-scale)); }
 </style>
+</head>
+<body>
 
 <header class="nav">
   <div class="wrap">
@@ -514,26 +628,105 @@
 
 <script>
 (function () {
-  var CONTACT_EMAIL = "";
-  var CONTACT_PHONE = "";
+  // ---- Fill these in once the contact details are final ----
+  var CONTACT_EMAIL = "";   // e.g. "hello@example.com" — leave empty to keep the placeholder
+  var CONTACT_PHONE = "";   // e.g. "(415) 555-0100"
+
   var emailEl = document.getElementById("contact-email");
   var phoneEl = document.getElementById("contact-phone");
   if (CONTACT_EMAIL) { emailEl.textContent = CONTACT_EMAIL; addCopy(emailEl, CONTACT_EMAIL); }
   if (CONTACT_PHONE) { phoneEl.textContent = CONTACT_PHONE; addCopy(phoneEl, CONTACT_PHONE); }
-  function addCopy(host, text) { var b = document.createElement("button"); b.type = "button"; b.className = "copy-inline"; b.textContent = "copy"; b.addEventListener("click", function () { copyText(text, b, "copied"); }); host.appendChild(b); }
-  function copyText(text, statusEl, okLabel) { function done(ok) { if (statusEl.tagName === "BUTTON") { var old = statusEl.textContent; statusEl.textContent = ok ? okLabel : "select & copy"; setTimeout(function () { statusEl.textContent = old; }, 1800); } else { statusEl.textContent = ok ? "Copied." : "Copy blocked here. Select the text above and copy it."; } } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallbackSelect(); done(false); }); } else { fallbackSelect(); done(false); } } function fallbackSelect() { var pre = document.getElementById("f-preview"); try { var r = document.createRange(); r.selectNodeContents(pre); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} }
+
+  function addCopy(host, text) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "copy-inline"; b.textContent = "copy";
+    b.addEventListener("click", function () { copyText(text, b, "copied"); });
+    host.appendChild(b);
+  }
+
+  function copyText(text, statusEl, okLabel) {
+    function done(ok) {
+      if (statusEl.tagName === "BUTTON") { var old = statusEl.textContent; statusEl.textContent = ok ? okLabel : "select & copy"; setTimeout(function () { statusEl.textContent = old; }, 1800); }
+      else { statusEl.textContent = ok ? "Copied." : "Copy blocked here. Select the text above and copy it."; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallbackSelect(); done(false); });
+    } else { fallbackSelect(); done(false); }
+  }
+  function fallbackSelect() {
+    var pre = document.getElementById("f-preview");
+    try { var r = document.createRange(); r.selectNodeContents(pre); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+  }
+
   var form = document.getElementById("inquiry");
   var fields = ["f-name", "f-company", "f-email", "f-phone", "f-type", "f-dates", "f-crew", "f-hours", "f-notes"];
-  try { var saved = JSON.parse(localStorage.getItem("sunset-inquiry-draft") || "null"); if (saved) fields.forEach(function (id) { if (saved[id] != null) document.getElementById(id).value = saved[id]; }); } catch (e) {}
-  form.addEventListener("input", function () { try { var d = {}; fields.forEach(function (id) { d[id] = document.getElementById(id).value; }); localStorage.setItem("sunset-inquiry-draft", JSON.stringify(d)); } catch (e) {} });
+  // Remember an unsent draft for this viewer only
+  try {
+    var saved = JSON.parse(localStorage.getItem("sunset-inquiry-draft") || "null");
+    if (saved) fields.forEach(function (id) { if (saved[id] != null) document.getElementById(id).value = saved[id]; });
+  } catch (e) {}
+  form.addEventListener("input", function () {
+    try { var d = {}; fields.forEach(function (id) { d[id] = document.getElementById(id).value; }); localStorage.setItem("sunset-inquiry-draft", JSON.stringify(d)); } catch (e) {}
+  });
+
   var lastMessage = "";
-  form.addEventListener("submit", function (ev) { ev.preventDefault(); var err = document.getElementById("f-err"); var name = v("f-name"), email = v("f-email"); if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Add your name and a valid email so we can get back to you."; err.hidden = false; (name ? document.getElementById("f-email") : document.getElementById("f-name")).focus(); return; } err.hidden = true; lastMessage = "Inquiry: Sunset boat hire\n------------------------------\nName: " + name + "\nProduction company: " + (v("f-company") || "—") + "\nEmail: " + email + "\nPhone: " + (v("f-phone") || "—") + "\nProject type: " + v("f-type") + "\nShoot dates: " + (v("f-dates") || "—") + "\nCrew & talent onboard: " + (v("f-crew") || "—") + "\nHours needed: " + v("f-hours") + "\nWhat Sunset needs to do on camera:\n" + (v("f-notes") || "—") + "\n"; document.getElementById("f-preview").textContent = lastMessage; var to = CONTACT_EMAIL || ""; document.getElementById("result-email").textContent = to || "the address above"; var mail = document.getElementById("btn-mail"); mail.href = "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent("Sunset boat hire inquiry — " + v("f-type")) + "&body=" + encodeURIComponent(lastMessage); var res = document.getElementById("f-result"); res.hidden = false; res.scrollIntoView({ behavior: "smooth", block: "nearest" }); }); document.getElementById("btn-copy").addEventListener("click", function () { copyText(lastMessage, document.getElementById("copy-status")); }); function v(id) { return document.getElementById(id).value.trim(); }
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = document.getElementById("f-err");
+    var name = v("f-name"), email = v("f-email");
+    if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.textContent = "Add your name and a valid email so we can get back to you."; err.hidden = false;
+      (name ? document.getElementById("f-email") : document.getElementById("f-name")).focus();
+      return;
+    }
+    err.hidden = true;
+    lastMessage =
+      "Inquiry: Sunset boat hire\n" +
+      "------------------------------\n" +
+      "Name: " + name + "\n" +
+      "Production company: " + (v("f-company") || "—") + "\n" +
+      "Email: " + email + "\n" +
+      "Phone: " + (v("f-phone") || "—") + "\n" +
+      "Project type: " + v("f-type") + "\n" +
+      "Shoot dates: " + (v("f-dates") || "—") + "\n" +
+      "Crew & talent onboard: " + (v("f-crew") || "—") + "\n" +
+      "Hours needed: " + v("f-hours") + "\n" +
+      "What Sunset needs to do on camera:\n" + (v("f-notes") || "—") + "\n";
+    document.getElementById("f-preview").textContent = lastMessage;
+    var to = CONTACT_EMAIL || "";
+    document.getElementById("result-email").textContent = to || "the address above";
+    var mail = document.getElementById("btn-mail");
+    mail.href = "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent("Sunset boat hire inquiry — " + v("f-type")) + "&body=" + encodeURIComponent(lastMessage);
+    var res = document.getElementById("f-result");
+    res.hidden = false;
+    res.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  document.getElementById("btn-copy").addEventListener("click", function () {
+    copyText(lastMessage, document.getElementById("copy-status"));
+  });
+  function v(id) { return document.getElementById(id).value.trim(); }
+
+  // ---- Commercial player ----
   var vid = document.getElementById("reel-video");
   var playerBox = vid.parentNode;
   vid.addEventListener("play", function () { playerBox.classList.add("playing"); });
   vid.addEventListener("pause", function () { playerBox.classList.remove("playing"); });
-  document.getElementById("btn-jump").addEventListener("click", function (ev) { ev.preventDefault(); var go = function () { vid.currentTime = 96; vid.play().catch(function () {}); }; if (vid.readyState >= 1) go(); else { vid.addEventListener("loadedmetadata", go, { once: true }); vid.load(); } playerBox.scrollIntoView({ behavior: "smooth", block: "center" }); });
-  var CREAMS = { warm: { bg: "#F7F0DF", alt: "#EFE5CC" }, ivory: { bg: "#FBF8F0", alt: "#F3EDDF" }, linen: { bg: "#F4F1E8", alt: "#EBE6D8" }, buttermilk: { bg: "#F8F2DA", alt: "#F1E8C4" }, sand: { bg: "#F0E5C9", alt: "#E7D9B4" }, seafoam: { bg: "#F1F2E5", alt: "#E6E9D6" } };
+  document.getElementById("btn-jump").addEventListener("click", function (ev) {
+    ev.preventDefault();
+    var go = function () { vid.currentTime = 96; vid.play().catch(function () {}); };
+    if (vid.readyState >= 1) go(); else { vid.addEventListener("loadedmetadata", go, { once: true }); vid.load(); }
+    playerBox.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  // ---- Background picker ----
+  var CREAMS = {
+    warm:       { bg: "#F7F0DF", alt: "#EFE5CC" },
+    ivory:      { bg: "#FBF8F0", alt: "#F3EDDF" },
+    linen:      { bg: "#F4F1E8", alt: "#EBE6D8" },
+    buttermilk: { bg: "#F8F2DA", alt: "#F1E8C4" },
+    sand:       { bg: "#F0E5C9", alt: "#E7D9B4" },
+    seafoam:    { bg: "#F1F2E5", alt: "#E6E9D6" }
+  };
   var root = document.documentElement;
   var sel = document.getElementById("cream-select");
   var sw = document.getElementById("swatches");
@@ -541,25 +734,82 @@
   var band = document.getElementById("band-toggle");
   var picker = document.getElementById("picker");
   var toggle = document.getElementById("picker-toggle");
-  Object.keys(CREAMS).forEach(function (k) { var b = document.createElement("button"); b.type = "button"; b.style.background = CREAMS[k].bg; b.title = sel.querySelector('[value="' + k + '"]').textContent; b.setAttribute("aria-label", b.title); b.dataset.k = k; b.addEventListener("click", function () { applyCream(k); }); sw.appendChild(b); });
-  function applyCream(k) { if (!CREAMS[k]) k = "warm"; if (k === "warm") root.removeAttribute("data-cream"); else root.setAttribute("data-cream", k); sel.value = k; Array.prototype.forEach.call(sw.children, function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); }); hexes.textContent = "page " + CREAMS[k].bg + " · alt sections " + CREAMS[k].alt; try { localStorage.setItem("sunset-cream", k); } catch (e) {} }
-  function applyBand(green) { if (green) root.removeAttribute("data-band"); else root.setAttribute("data-band", "cream"); band.checked = green; try { localStorage.setItem("sunset-band", green ? "green" : "cream"); } catch (e) {} }
+
+  Object.keys(CREAMS).forEach(function (k) {
+    var b = document.createElement("button");
+    b.type = "button"; b.style.background = CREAMS[k].bg; b.title = sel.querySelector('[value="' + k + '"]').textContent;
+    b.setAttribute("aria-label", b.title); b.dataset.k = k;
+    b.addEventListener("click", function () { applyCream(k); });
+    sw.appendChild(b);
+  });
+
+  function applyCream(k) {
+    if (!CREAMS[k]) k = "warm";
+    if (k === "warm") root.removeAttribute("data-cream"); else root.setAttribute("data-cream", k);
+    sel.value = k;
+    Array.prototype.forEach.call(sw.children, function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); });
+    hexes.textContent = "page " + CREAMS[k].bg + " · alt sections " + CREAMS[k].alt;
+    try { localStorage.setItem("sunset-cream", k); } catch (e) {}
+  }
+  function applyBand(green) {
+    if (green) root.removeAttribute("data-band"); else root.setAttribute("data-band", "cream");
+    band.checked = green;
+    try { localStorage.setItem("sunset-band", green ? "green" : "cream"); } catch (e) {}
+  }
   sel.addEventListener("change", function () { applyCream(sel.value); });
   band.addEventListener("change", function () { applyBand(band.checked); });
-  toggle.addEventListener("click", function () { var min = picker.classList.toggle("min"); toggle.textContent = min ? "show" : "hide"; toggle.setAttribute("aria-expanded", min ? "false" : "true"); });
-  var TYPES = { editorial: "Fraunces · Instrument Sans · IBM Plex Mono. Soft serif with true italics; reads like a West Coast travel feature. Warm and welcoming.", callsheet: "Barlow Condensed caps · Barlow · Space Mono. Built like a production document: tall, tight, no-nonsense. Red eyebrows carry the color.", transom: "Bodoni Moda · Source Sans 3 · Courier Prime. High-contrast Didone like a name painted on a transom; screenplay Courier for the spec sheet. Headlines in green.", titlecard: "Archivo Expanded caps · Archivo · Courier Prime. Wide, tracked title-card lettering. The most cinematic and the coolest in tone.", westcoast: "Jost · Newsreader · Space Mono. Geometric mid-century sans over a serif body. 1960s Sunset-magazine modern, relaxed and sunny." };
-  var INKS = { green: "#17302A — ties the text to the green band and the water.", charcoal: "#221F1B — most neutral; red and green stay the only colors on the page.", navy: "#152A3A — cooler, nautical; contrasts hardest with the red.", espresso: "#2C1F17 — warmest; sits into the cream like ink on paper." };
+  toggle.addEventListener("click", function () {
+    var min = picker.classList.toggle("min");
+    toggle.textContent = min ? "show" : "hide";
+    toggle.setAttribute("aria-expanded", min ? "false" : "true");
+  });
+
+  // ---- Typography + ink ----
+  var TYPES = {
+    editorial: "Fraunces · Instrument Sans · IBM Plex Mono. Soft serif with true italics; reads like a West Coast travel feature. Warm and welcoming.",
+    callsheet: "Barlow Condensed caps · Barlow · Space Mono. Built like a production document: tall, tight, no-nonsense. Red eyebrows carry the color.",
+    transom:   "Bodoni Moda · Source Sans 3 · Courier Prime. High-contrast Didone like a name painted on a transom; screenplay Courier for the spec sheet. Headlines in green.",
+    titlecard: "Archivo Expanded caps · Archivo · Courier Prime. Wide, tracked title-card lettering. The most cinematic and the coolest in tone.",
+    westcoast: "Jost · Newsreader · Space Mono. Geometric mid-century sans over a serif body. 1960s Sunset-magazine modern, relaxed and sunny."
+  };
+  var INKS = {
+    green:    "#17302A — ties the text to the green band and the water.",
+    charcoal: "#221F1B — most neutral; red and green stay the only colors on the page.",
+    navy:     "#152A3A — cooler, nautical; contrasts hardest with the red.",
+    espresso: "#2C1F17 — warmest; sits into the cream like ink on paper."
+  };
   var typeSel = document.getElementById("type-select");
   var inkSel = document.getElementById("ink-select");
-  function applyType(k) { if (!TYPES[k]) k = "editorial"; if (k === "editorial") root.removeAttribute("data-type"); else root.setAttribute("data-type", k); typeSel.value = k; document.getElementById("type-note").textContent = TYPES[k]; try { localStorage.setItem("sunset-type", k); } catch (e) {} }
-  function applyInk(k) { if (!INKS[k]) k = "green"; if (k === "green") root.removeAttribute("data-ink"); else root.setAttribute("data-ink", k); inkSel.value = k; document.getElementById("ink-note").textContent = INKS[k]; try { localStorage.setItem("sunset-ink", k); } catch (e) {} }
+  function applyType(k) {
+    if (!TYPES[k]) k = "editorial";
+    if (k === "editorial") root.removeAttribute("data-type"); else root.setAttribute("data-type", k);
+    typeSel.value = k;
+    document.getElementById("type-note").textContent = TYPES[k];
+    try { localStorage.setItem("sunset-type", k); } catch (e) {}
+  }
+  function applyInk(k) {
+    if (!INKS[k]) k = "green";
+    if (k === "green") root.removeAttribute("data-ink"); else root.setAttribute("data-ink", k);
+    inkSel.value = k;
+    document.getElementById("ink-note").textContent = INKS[k];
+    try { localStorage.setItem("sunset-ink", k); } catch (e) {}
+  }
   typeSel.addEventListener("change", function () { applyType(typeSel.value); });
   inkSel.addEventListener("change", function () { applyInk(inkSel.value); });
+
   var startCream = "warm", startBand = true, startType = "editorial", startInk = "green";
-  try { startCream = localStorage.getItem("sunset-cream") || "warm"; startBand = localStorage.getItem("sunset-band") !== "cream"; startType = localStorage.getItem("sunset-type") || "editorial"; startInk = localStorage.getItem("sunset-ink") || "green"; } catch (e) {}
+  try {
+    startCream = localStorage.getItem("sunset-cream") || "warm";
+    startBand = localStorage.getItem("sunset-band") !== "cream";
+    startType = localStorage.getItem("sunset-type") || "editorial";
+    startInk = localStorage.getItem("sunset-ink") || "green";
+  } catch (e) {}
   applyCream(startCream);
   applyBand(startBand);
   applyType(startType);
   applyInk(startInk);
 })();
 </script>
+
+</body>
+</html>
