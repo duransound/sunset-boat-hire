@@ -1,0 +1,565 @@
+<title>Sunset Boat Hire</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Barlow:wght@400;500;600&family=Space+Mono:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Source+Sans+3:wght@400;500;600&family=Courier+Prime:wght@400;700&family=Archivo:ital,wdth,wght@0,100,400;0,100,500;0,125,600;1,100,400&family=Jost:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+  :root {
+    --cream: #F7F0DF;
+    --cream-2: #EFE5CC;
+    --sand: #E1D3B0;
+    --ink: #17302A;
+    --ink-soft: #3E564D;
+    --green: #1F4D3A;
+    --green-2: #2E6B50;
+    --green-tint: #D9E6DA;
+    --red: #B5382C;
+    --red-deep: #8E2A20;
+    --gold: #E9B45B;
+    --line: rgba(31, 77, 58, 0.22);
+    --surface: #FBF7EC;
+    --shadow: 0 18px 40px -22px rgba(23, 48, 42, 0.45);
+    --sky-1: #F2C27B;
+    --sky-2: #E58A5C;
+    --sky-3: #B95A4E;
+    --water-1: #3F7A6A;
+    --water-2: #1F4D3A;
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+    /* type direction knobs (defaults = "Golden hour editorial") */
+    --display-weight: 500;
+    --display-case: none;
+    --display-tracking: -0.02em;
+    --display-stretch: 100%;
+    --display-scale: 1;
+    --display-lh: 1.05;
+    --em-style: italic;
+    --em-weight: 300;
+    --em-color: var(--green);
+    --h-color: var(--ink);
+    --eyebrow-color: var(--green-2);
+    --body-size: 17px;
+    --body-lh: 1.55;
+  }
+  /* Ink colors — body text and headline base */
+  :root[data-ink="charcoal"] { --ink: #221F1B; --ink-soft: #5A544B; }
+  :root[data-ink="navy"]     { --ink: #152A3A; --ink-soft: #46596A; }
+  :root[data-ink="espresso"] { --ink: #2C1F17; --ink-soft: #5F4B40; }
+
+  /* Type directions */
+  :root[data-type="callsheet"] {
+    --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --font-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Space Mono", Menlo, monospace;
+    --display-weight: 600; --display-case: uppercase; --display-tracking: 0.005em; --display-scale: 1.04; --display-lh: 0.94;
+    --em-style: normal; --em-weight: 600; --em-color: var(--red); --eyebrow-color: var(--red);
+  }
+  :root[data-type="transom"] {
+    --font-display: "Bodoni Moda", "Didot", "Bodoni 72", serif;
+    --font-body: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Courier Prime", "Courier New", monospace;
+    --display-weight: 500; --display-tracking: -0.005em; --display-scale: 1.02; --display-lh: 1.02;
+    --em-style: italic; --em-weight: 400; --em-color: var(--red); --h-color: var(--green);
+  }
+  :root[data-type="titlecard"] {
+    --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Courier Prime", "Courier New", monospace;
+    --display-weight: 600; --display-case: uppercase; --display-tracking: 0.03em; --display-stretch: 125%; --display-scale: 0.74; --display-lh: 1.02;
+    --em-style: normal; --em-weight: 600; --em-color: var(--red); --h-color: var(--green); --eyebrow-color: var(--ink-soft);
+  }
+  :root[data-type="westcoast"] {
+    --font-display: "Jost", "Futura", "Century Gothic", sans-serif;
+    --font-body: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --font-mono: "Space Mono", Menlo, monospace;
+    --display-weight: 500; --display-tracking: 0.01em; --display-scale: 0.94; --display-lh: 1.06;
+    --em-style: italic; --em-weight: 400; --em-color: var(--red); --body-size: 18.5px; --body-lh: 1.5;
+  }
+  /* Cream tone options — chosen from the Background picker; the page commits to a single light look */
+  :root[data-cream="ivory"]      { --cream: #FBF8F0; --cream-2: #F3EDDF; --surface: #FFFFFF; --sand: #E6DEC9; }
+  :root[data-cream="linen"]      { --cream: #F4F1E8; --cream-2: #EBE6D8; --surface: #FBFAF6; --sand: #DCD5C2; }
+  :root[data-cream="buttermilk"] { --cream: #F8F2DA; --cream-2: #F1E8C4; --surface: #FCF9EC; --sand: #E3D6A8; }
+  :root[data-cream="sand"]       { --cream: #F0E5C9; --cream-2: #E7D9B4; --surface: #F8F0DC; --sand: #D8C89B; }
+  :root[data-cream="seafoam"]    { --cream: #F1F2E5; --cream-2: #E6E9D6; --surface: #F9FAF2; --sand: #D3D8BF; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--font-body); font-size: var(--body-size); line-height: var(--body-lh); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); font-stretch: var(--display-stretch); text-transform: var(--display-case); letter-spacing: var(--display-tracking); line-height: var(--display-lh); color: var(--h-color); margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1120px, 100%); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--eyebrow-color); }
+  .section { padding-block: clamp(56px, 8vw, 104px); }
+  .section-head { display: grid; gap: 14px; max-width: 640px; margin-bottom: clamp(28px, 4vw, 48px); }
+  .section-head h2 { font-size: calc(clamp(32px, 4.4vw, 48px) * var(--display-scale)); }
+  .section-head p { color: var(--ink-soft); max-width: 58ch; }
+  .rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+  .ph { color: var(--red); font-family: var(--font-mono); font-size: 0.86em; background: rgba(196, 64, 44, 0.08); border: 1px dashed rgba(196, 64, 44, 0.5); border-radius: 4px; padding: 0 6px; white-space: nowrap; }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--cream) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+  .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+  .brand .name { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: 600; letter-spacing: -0.01em; color: var(--h-color); }
+  .brand .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+  .nav-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--green); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 999px; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .15s ease, background .15s ease; }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .btn-red { background: var(--red); color: #FFF6E8; }
+  .btn-red:hover { background: var(--red-deep); transform: translateY(-1px); }
+  .btn-green { background: var(--green); color: var(--cream); }
+  .btn-green:hover { background: var(--green-2); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--green); border-color: var(--line); }
+  .btn-ghost:hover { background: var(--green-tint); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+  .hero { padding-block: clamp(36px, 6vw, 72px) clamp(40px, 6vw, 72px); }
+  .hero h1 { font-size: calc(clamp(40px, 5.4vw, 68px) * var(--display-scale)); max-width: 18ch; }
+  .hero h1 em { font-style: var(--em-style); font-weight: var(--em-weight); color: var(--em-color); }
+  .hero .lede { font-size: clamp(18px, 2vw, 21px); color: var(--ink-soft); max-width: 62ch; margin-top: 20px; }
+  .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
+  .hero .facts span::before { content: "◆ "; color: var(--red); font-size: 9px; vertical-align: 2px; }
+  .hero-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; border-radius: 14px; background: var(--water-2); box-shadow: var(--shadow); margin-top: clamp(28px, 4vw, 44px); }
+  .hero-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-frame .film-frame { inset: 14px; }
+  .hero-frame .rec { top: 22px; right: 26px; }
+  .hero-frame .caption { position: absolute; left: 26px; bottom: 20px; color: #FFF6E8; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+  .slot { position: relative; overflow: hidden; border-radius: 14px; max-width: 100%; background: radial-gradient(ellipse 70% 45% at 55% 58%, rgba(255, 220, 150, 0.55), transparent 65%), linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 42%, var(--sky-3) 58%, var(--water-1) 60%, var(--water-2) 100%); box-shadow: var(--shadow); }
+  .slot::before { content: ""; position: absolute; left: 0; right: 0; top: 60%; height: 40%; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 9px); mix-blend-mode: overlay; }
+  .slot .sun { position: absolute; width: 18%; aspect-ratio: 1; border-radius: 50%; left: 46%; top: 44%; background: radial-gradient(circle, #FFF2C7 0%, var(--gold) 55%, rgba(233,180,91,0) 72%); filter: blur(1px); }
+  .slot .label { position: absolute; inset: auto 14px 14px 14px; display: flex; justify-content: space-between; align-items: end; gap: 10px; color: #FFF6E8; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+  .slot .label b { font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); font-size: calc(18px * var(--display-scale)); letter-spacing: 0; }
+  .slot .label .todo { color: #FFD9A6; border: 1px dashed rgba(255,217,166,0.7); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
+  .slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .slot.has-photo .sun { display: none; }
+  .slot.has-photo::before { display: none; }
+  .slot.has-photo .label { background: linear-gradient(transparent, rgba(23,48,42,0.75)); inset: auto 0 0 0; padding: 40px 14px 14px; }
+  .slot .label .swap { color: #FFD9A6; border: 1px dashed rgba(255,217,166,0.7); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
+  .hero .slot { aspect-ratio: 4 / 5; }
+  .hero .slot .sun { width: 22%; }
+  .film-frame { position: absolute; inset: 12px; border: 1px solid rgba(255,246,232,0.45); border-radius: 8px; pointer-events: none; }
+  .film-frame::after { content: "SUNSET · SF BAY · 24fps"; position: absolute; top: 10px; left: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,246,232,0.85); }
+  .rec { position: absolute; top: 22px; right: 24px; display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,246,232,0.9); letter-spacing: 0.1em; }
+  .rec i { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); animation: blink 1.6s infinite; }
+  @keyframes blink { 50% { opacity: 0.25; } }
+  @media (prefers-reduced-motion: reduce) { .rec i { animation: none; } html { scroll-behavior: auto; } }
+  .reel { background: var(--green); color: var(--cream); --line: rgba(247, 240, 223, 0.2); }
+  :root[data-band="cream"] .reel { background: var(--cream-2); color: var(--ink); --line: rgba(31, 77, 58, 0.22); }
+  :root[data-band="cream"] .reel h2 { color: var(--h-color); }
+  :root[data-band="cream"] .reel p { color: var(--ink-soft); }
+  :root[data-band="cream"] .reel .eyebrow { color: var(--green-2); }
+  .reel .eyebrow { color: var(--gold); }
+  .reel h2 { font-size: calc(clamp(32px, 4.4vw, 52px) * var(--display-scale)); max-width: 20ch; color: #F7F0DF; }
+  .reel p { color: rgba(247, 240, 223, 0.8); max-width: 68ch; margin-top: 16px; }
+  .reel .btn-red { margin-top: 26px; }
+  .player { margin-top: clamp(28px, 4vw, 44px); position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; background: #17302A; display: block; box-shadow: var(--shadow); }
+  .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; display: block; }
+  .player .strip { position: absolute; left: 0; right: 0; top: 0; padding: 12px 16px; background: linear-gradient(rgba(23,48,42,0.75), transparent); color: #F7F0DF; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; display: flex; justify-content: space-between; gap: 12px; pointer-events: none; }
+  .player.playing .strip { opacity: 0; transition: opacity .4s; }
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px; gap: 14px; }
+  .gallery .slot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery .slot:nth-child(2) { grid-row: span 2; }
+  .gallery .slot:nth-child(3) { grid-column: span 2; }
+  .gallery .slot:nth-child(6) { grid-column: span 2; }
+  @media (max-width: 720px) { .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; grid-auto-flow: dense; } .gallery .slot:nth-child(1) { grid-column: span 2; grid-row: span 1; } .gallery .slot:nth-child(2) { grid-row: span 1; } .gallery .slot:nth-child(3) { grid-column: span 2; } .gallery .slot:nth-child(6) { grid-column: span 1; } }
+  .gallery .slot .sun { width: 14%; }
+  .notes { background: var(--cream-2); }
+  .sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 18px 24px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+  .sheet-head b { color: var(--green); font-weight: 500; }
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { .spec-grid { grid-template-columns: 1fr; } }
+  .spec-col { padding: 8px 24px 18px; }
+  .spec-col + .spec-col { border-left: 1px solid var(--line); }
+  @media (max-width: 720px) { .spec-col + .spec-col { border-left: 0; border-top: 1px solid var(--line); } }
+  .spec-col h3 { font-size: calc(20px * var(--display-scale)); padding: 16px 0 8px; color: var(--green); }
+  dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 20px; }
+  dl > div { display: contents; }
+  dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); padding: 10px 0; border-top: 1px solid var(--line); }
+  dd { margin: 0; padding: 10px 0; border-top: 1px solid var(--line); font-size: 16px; }
+  dl > div:first-child dt, dl > div:first-child dd { border-top: 0; }
+  .sheet-foot { padding: 16px 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+  .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (max-width: 860px) { .loc-grid { grid-template-columns: 1fr; } }
+  .loc-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .loc-list div { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .loc-list b { font-weight: 500; }
+  .loc-list small { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; text-align: right; }
+  .map { position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--green-tint); border: 1px solid var(--line); }
+  .map svg { width: 100%; height: 100%; display: block; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+  .step .n { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(40px * var(--display-scale)); font-weight: var(--em-weight); font-style: var(--em-style); color: var(--red); line-height: 1; }
+  .step h3 { font-size: calc(22px * var(--display-scale)); }
+  .step p { color: var(--ink-soft); font-size: 15.5px; }
+  .contact { background: var(--cream-2); }
+  .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card { display: grid; gap: 22px; }
+  .contact-card .row { display: grid; gap: 4px; }
+  .contact-card .row .eyebrow { color: var(--ink-soft); }
+  .contact-card .row .val { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: var(--display-weight); overflow-wrap: anywhere; }
+  .copy-inline { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 12px; color: var(--green); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; cursor: pointer; margin-left: 8px; vertical-align: middle; }
+  .copy-inline:hover { background: var(--green-tint); }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(20px, 3vw, 32px); display: grid; gap: 16px; box-shadow: var(--shadow); }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .f-row { grid-template-columns: 1fr; } }
+  .field { display: grid; gap: 6px; }
+  label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  input, select, textarea { font: inherit; font-size: 16px; color: var(--ink); background: var(--cream); border: 1px solid var(--line); border-radius: 8px; padding: 11px 12px; width: 100%; }
+  textarea { min-height: 120px; resize: vertical; }
+  .f-note { font-size: 13.5px; color: var(--ink-soft); }
+  .f-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .err { color: var(--red); font-size: 14px; }
+  .result { background: var(--green-tint); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+  .result h3 { font-size: calc(22px * var(--display-scale)); color: var(--green); }
+  .result pre { font-family: var(--font-mono); font-size: 13px; white-space: pre-wrap; margin: 0; background: var(--surface); border-radius: 8px; padding: 14px; max-height: 260px; overflow: auto; color: var(--ink); }
+  .result .f-actions { gap: 10px; }
+  .picker { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 12px 14px; display: grid; gap: 8px; width: min(280px, calc(100vw - 32px)); font-size: 13px; max-height: calc(100vh - 40px); overflow: auto; }
+  .picker .eyebrow { display: flex; justify-content: space-between; align-items: center; }
+  .picker .eyebrow button { font: inherit; color: var(--ink-soft); background: none; border: 0; cursor: pointer; letter-spacing: 0; text-transform: none; padding: 0; }
+  .picker select { padding: 8px 10px; font-size: 14px; }
+  .picker .swatches { display: flex; gap: 6px; }
+  .picker .swatches button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
+  .picker .swatches button[aria-pressed="true"] { border-color: var(--red); box-shadow: 0 0 0 2px var(--surface) inset; }
+  .picker .hexes { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.02em; }
+  .picker label.check { display: flex; align-items: center; gap: 8px; text-transform: none; letter-spacing: 0; font-family: var(--font-body); font-size: 13.5px; color: var(--ink); cursor: pointer; }
+  .picker label.check input { width: auto; margin: 0; }
+  .picker-collapsed { display: none; }
+  .picker.min .picker-body { display: none; }
+  .picker.min .picker-collapsed { display: inline; }
+  footer { padding-block: 32px 40px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--ink-soft); }
+  footer .brand .name { font-size: calc(20px * var(--display-scale)); }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="name">Sunset</span><span class="tag">Boat for hire · SF Bay</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#reel">The commercial</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#notes">Production notes</a>
+      <a href="#location">Location</a>
+    </nav>
+    <a class="btn btn-red" href="#contact">Check availability</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Picture boat · Set · Floating location</p>
+      <h1 style="margin-top:14px">A boat named <em>Sunset</em>, ready for your shoot.</h1>
+      <p class="lede">Hire Sunset as a prop, a set, or a working vessel for commercials, film, TV and stills. A classic cream-and-green sailboat with red tanbark sails, berthed on the San Francisco waterfront a few minutes from Oracle Park, with the Bay Bridge, McCovey Cove and the city skyline in frame.</p>
+      <div class="cta-row">
+        <a class="btn btn-red" href="#contact">Check availability</a>
+        <a class="btn btn-ghost" href="#reel">Watch the commercial</a>
+      </div>
+      <div class="facts">
+        <span>Classic sailboat, <span class="ph">[__ ft]</span></span>
+        <span>Red tanbark sails</span>
+        <span>Near Oracle Park</span>
+        <span>Captain included</span>
+        <span>Rates on request</span>
+      </div>
+      <div class="hero-frame">
+        <img src="img/hero.jpg" alt="Sunset under full red tanbark sails on San Francisco Bay, the Marin hills behind her, as she appears in the commercial">
+        <div class="film-frame"></div>
+        <div class="rec"><i></i>REC</div>
+        <div class="caption">UNDER SAIL · FROM THE COMMERCIAL</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reel section" id="reel">
+    <div class="wrap">
+      <p class="eyebrow">Already on camera</p>
+      <h2 style="margin-top:14px">She's already carried a national spot.</h2>
+      <p>Sunset is the sailboat in OpenAI's "ChatGPT Voice" commercial, her name covered with an "Astra" decal for the brand. The crew shot dockside and under sail, so we know what a day on the water takes: a camera boat alongside, power for lights, and a captain who works to a shot list. Her scenes start at 1:36.</p>
+      <div class="cta-row" style="margin-top:26px"><a class="btn btn-red" href="#" id="btn-jump">Jump to Sunset's scenes</a><a class="btn btn-ghost" style="color:#F7F0DF" href="https://www.youtube.com/watch?v=96ogPwN9ykM" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
+      <div class="player">
+        <video id="reel-video" controls preload="metadata" playsinline poster="img/poster.jpg">
+          <source src="img/commercial.mp4" type="video/mp4">
+        </video>
+        <div class="strip" aria-hidden="true"><span>OPENAI · CHATGPT VOICE · 2:05</span><span>SUNSET APPEARS AT 1:36</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Gallery</p>
+        <h2>Every angle a location scout would ask for.</h2>
+        <p>Under sail, at the slip, and in the cockpit. Frames marked low-res are being reshot.</p>
+      </div>
+      <div class="gallery">
+        <div class="slot has-photo"><img src="img/side.jpg" alt="Sunset at her slip: cream hull, dark green bottom, teak trim, bronze portholes and a green dodger"><div class="label"><b>At the slip: cream, green, teak and bronze</b></div></div>
+        <div class="slot has-photo"><img src="img/mast.jpg" alt="Looking up Sunset's mast with the red sail set against a blue sky"><div class="label"><b>Up the mast, sail set</b></div></div>
+        <div class="slot has-photo"><img src="img/cockpit.jpg" alt="Wide view under the dodger toward the bow, the marina beyond"><div class="label"><b>Cockpit and companionway</b></div></div>
+        <div class="slot has-photo"><img src="img/skyline.jpg" alt="Sunset in her slip with the San Francisco skyline behind"><div class="label"><b>In the slip, city behind</b><span class="swap">LOW-RES</span></div></div>
+        <div class="slot has-photo"><img src="img/name.jpg" alt="The name Sunset painted on the bow" style="object-position: center bottom"><div class="label"><b>Her name on the bow</b><span class="swap">LOW-RES</span></div></div>
+        <div class="slot has-photo"><img src="img/sail-wide.jpg" alt="Sunset under red sails on the open Bay with a marina and hills in the distance"><div class="label"><b>On the Bay, from the commercial</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notes section" id="notes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Production notes</p>
+        <h2>The spec sheet, written for a call sheet.</h2>
+        <p>What a producer, DP or location manager needs before committing to a day on the water.</p>
+      </div>
+      <div class="sheet">
+        <div class="sheet-head"><span>Vessel: <b>Sunset</b></span><span>Home port: <b>San Francisco, CA</b></span><span>Sheet rev. <b>Sep 2026</b></span></div>
+        <div class="spec-grid">
+          <div class="spec-col">
+            <h3>The boat</h3>
+            <dl>
+              <div><dt>Type</dt><dd><span class="ph">[e.g. Classic sloop]</span></dd></div>
+              <div><dt>Length</dt><dd><span class="ph">[__ ft]</span></dd></div>
+              <div><dt>Beam</dt><dd><span class="ph">[__ ft]</span></dd></div>
+              <div><dt>Year / builder</dt><dd><span class="ph">[Year, builder]</span></dd></div>
+              <div><dt>Hull &amp; finish</dt><dd>Cream hull, dark green bottom, teak trim, bronze portholes, green canvas dodger</dd></div>
+              <div><dt>Passengers</dt><dd><span class="ph">[__]</span> plus captain</dd></div>
+              <div><dt>Sails</dt><dd>Red tanbark main and jib</dd></div>
+              <div><dt>Engine</dt><dd><span class="ph">[Make / hp]</span></dd></div>
+            </dl>
+          </div>
+          <div class="spec-col">
+            <h3>For the crew</h3>
+            <dl>
+              <div><dt>Captain</dt><dd>Licensed captain included on every hire</dd></div>
+              <div><dt>Power onboard</dt><dd><span class="ph">[e.g. 12V, inverter, shore power at dock]</span></dd></div>
+              <div><dt>Deck space</dt><dd><span class="ph">[Usable area for camera &amp; talent]</span></dd></div>
+              <div><dt>Camera boat</dt><dd>Can be arranged on request</dd></div>
+              <div><dt>Set dressing</dt><dd>Her name can be covered with a decal for the shoot; she wore "Astra" for OpenAI</dd></div>
+              <div><dt>Dockside shoots</dt><dd>Available at the berth, no departure needed</dd></div>
+              <div><dt>Hours</dt><dd>Half day, full day and multi-day</dd></div>
+              <div><dt>Insurance</dt><dd>Certificate of insurance required from the production</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="sheet-foot">Rates depend on the project, hours on the water and crew size. Tell us about the shoot and we'll send a quote within one business day.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="location">
+    <div class="wrap loc-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:24px">
+          <p class="eyebrow">Location</p>
+          <h2>Minutes from Oracle Park.</h2>
+          <p>Sunset is berthed at <span class="ph">[Marina / pier name]</span> on the San Francisco waterfront, so crews can load in dockside and be in front of the skyline without a long transit.</p>
+        </div>
+        <div class="loc-list">
+          <div><b>Oracle Park &amp; McCovey Cove</b><small>&lt; 5 min</small></div>
+          <div><b>Bay Bridge</b><small>~10 min</small></div>
+          <div><b>Embarcadero &amp; Ferry Building</b><small>~15 min</small></div>
+          <div><b>Treasure Island</b><small>~20 min</small></div>
+          <div><b>Alcatraz</b><small>~30 min</small></div>
+          <div><b>Golden Gate Bridge</b><small>~45 min</small></div>
+        </div>
+        <p class="f-note" style="margin-top:14px">Transit times are approximate and depend on wind and tide. Crew parking and load-in details provided on booking.</p>
+      </div>
+      <div class="map" aria-label="Stylized map of the San Francisco waterfront near Oracle Park">
+        <svg viewBox="0 0 400 400" role="img">
+          <defs>
+            <pattern id="waves" width="28" height="10" patternUnits="userSpaceOnUse">
+              <path d="M0 5 Q7 0 14 5 T28 5" fill="none" stroke="rgba(31,77,58,0.25)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="400" height="400" fill="var(--green-tint)"/>
+          <rect width="400" height="400" fill="url(#waves)"/>
+          <path d="M0 0 H200 Q215 60 190 120 Q170 180 200 240 Q230 300 210 400 H0 Z" fill="var(--sand)"/>
+          <path d="M0 40 H60 M0 90 H80 M0 140 H70 M0 190 H90 M0 240 H85 M0 290 H95 M0 340 H100" stroke="var(--line)" stroke-width="1"/>
+          <path d="M120 0 V400" stroke="var(--line)" stroke-width="1"/>
+          <path d="M195 120 Q320 90 400 60" fill="none" stroke="var(--green)" stroke-width="3" stroke-dasharray="6 5"/>
+          <text x="300" y="82" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--green)" letter-spacing="1">BAY BRIDGE</text>
+          <path d="M180 200 h-40 a20 20 0 1 0 40 0 z" fill="var(--green-2)"/>
+          <text x="90" y="245" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink)" letter-spacing="1">ORACLE PARK</text>
+          <ellipse cx="220" cy="230" rx="26" ry="14" fill="var(--green-tint)" stroke="var(--line)"/>
+          <text x="248" y="234" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-soft)" letter-spacing="1">McCOVEY COVE</text>
+          <g transform="translate(232 195)">
+            <circle r="16" fill="var(--red)" opacity="0.18"><animate attributeName="r" values="12;20;12" dur="3s" repeatCount="indefinite"/></circle>
+            <circle r="6" fill="var(--red)"/>
+          </g>
+          <text x="252" y="190" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="16" fill="var(--ink)">Sunset</text>
+          <text x="20" y="380" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-soft)" letter-spacing="1">SAN FRANCISCO</text>
+          <text x="300" y="380" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-soft)" letter-spacing="1">SF BAY</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How hiring works</p>
+        <h2>Three steps from inquiry to shoot day.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><h3>Tell us about the shoot</h3><p>Dates, crew size, what Sunset needs to do on camera. We reply within one business day with availability and a quote.</p></div>
+        <div class="step"><span class="n">2</span><h3>Scout the boat</h3><p>Walk the deck with your DP or location manager, dockside or on a short run into the Bay, and confirm power, rigging and blocking.</p></div>
+        <div class="step"><span class="n">3</span><h3>Shoot</h3><p>The captain handles positioning and safety while your crew works. Half days, full days and multi-day bookings.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:28px">
+          <p class="eyebrow">Check availability</p>
+          <h2>Let's get Sunset on your call sheet.</h2>
+          <p>Reach out directly or send the inquiry form. Either way you'll hear back within one business day.</p>
+        </div>
+        <div class="contact-card">
+          <div class="row"><span class="eyebrow">Owner</span><span class="val"><span class="ph">[Owner name]</span></span></div>
+          <div class="row"><span class="eyebrow">Email</span><span class="val" id="contact-email"><span class="ph">[email@example.com]</span></span></div>
+          <div class="row"><span class="eyebrow">Phone</span><span class="val" id="contact-phone"><span class="ph">[(415) 000-0000]</span></span></div>
+          <div class="row"><span class="eyebrow">Based</span><span class="val">San Francisco, CA</span></div>
+        </div>
+      </div>
+
+      <form id="inquiry" novalidate>
+        <div class="f-row">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-company">Production company</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-type">Project type</label>
+            <select id="f-type" name="type">
+              <option>Commercial</option><option>Feature film</option><option>TV / streaming</option><option>Music video</option><option>Still photography</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-dates">Shoot dates (or window)</label><input id="f-dates" name="dates" type="text" placeholder="e.g. Oct 14–15, flexible"></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-crew">Crew &amp; talent onboard</label><input id="f-crew" name="crew" type="text" placeholder="e.g. 6 crew, 2 talent"></div>
+          <div class="field"><label for="f-hours">Hours needed</label>
+            <select id="f-hours" name="hours"><option>Half day</option><option>Full day</option><option>Multi-day</option><option>Dockside only</option><option>Not sure yet</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="f-notes">What does Sunset need to do on camera?</label><textarea id="f-notes" name="notes" placeholder="Underway or moored, backgrounds you want, camera boat, drone, lighting needs…"></textarea></div>
+        <p class="err" id="f-err" hidden></p>
+        <div class="f-actions">
+          <button class="btn btn-green" type="submit">Prepare inquiry</button>
+          <span class="f-note">No pricing commitment. We'll come back with availability and a quote.</span>
+        </div>
+        <div class="result" id="f-result" hidden>
+          <h3>Your inquiry is ready to send</h3>
+          <p class="f-note">Copy it and email it to <strong id="result-email">the address above</strong>, or open it in your email app.</p>
+          <pre id="f-preview"></pre>
+          <div class="f-actions">
+            <button class="btn btn-green" type="button" id="btn-copy">Copy inquiry</button>
+            <a class="btn btn-ghost" id="btn-mail" href="#" target="_blank" rel="noopener">Open in email app</a>
+            <span class="f-note" id="copy-status" aria-live="polite"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<aside class="picker" id="picker" aria-label="Background options">
+  <p class="eyebrow"><span>Background</span><button type="button" id="picker-toggle" aria-expanded="true">hide</button></p>
+  <div class="picker-body">
+    <select id="cream-select" aria-label="Cream tone">
+      <option value="warm">Warm cream (current)</option>
+      <option value="ivory">Ivory — lightest, near white</option>
+      <option value="linen">Linen — cooler, soft grey-cream</option>
+      <option value="buttermilk">Buttermilk — yellow-leaning</option>
+      <option value="sand">Sand — deepest, beachy</option>
+      <option value="seafoam">Seafoam cream — faint green tint</option>
+    </select>
+    <div class="swatches" id="swatches"></div>
+    <div class="hexes" id="hexes"></div>
+    <label class="check"><input type="checkbox" id="band-toggle" checked> Keep the green band behind the commercial</label>
+    <hr class="rule">
+    <label for="type-select" class="eyebrow" style="display:block">Typography</label>
+    <select id="type-select" aria-label="Type direction">
+      <option value="editorial">Golden hour editorial (current)</option>
+      <option value="callsheet">Call sheet</option>
+      <option value="transom">Transom</option>
+      <option value="titlecard">Title card</option>
+      <option value="westcoast">West Coast modern</option>
+    </select>
+    <p class="hexes" id="type-note"></p>
+    <label for="ink-select" class="eyebrow" style="display:block">Ink color</label>
+    <select id="ink-select" aria-label="Ink color">
+      <option value="green">Deep green-black (current)</option>
+      <option value="charcoal">Warm charcoal</option>
+      <option value="navy">Bay navy</option>
+      <option value="espresso">Espresso</option>
+    </select>
+    <p class="hexes" id="ink-note"></p>
+  </div>
+</aside>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="name">Sunset</span><span class="tag">SF Bay</span></a>
+    <span>Boat for hire for commercial, film and photo production · San Francisco, near Oracle Park</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var CONTACT_EMAIL = "";
+  var CONTACT_PHONE = "";
+  var emailEl = document.getElementById("contact-email");
+  var phoneEl = document.getElementById("contact-phone");
+  if (CONTACT_EMAIL) { emailEl.textContent = CONTACT_EMAIL; addCopy(emailEl, CONTACT_EMAIL); }
+  if (CONTACT_PHONE) { phoneEl.textContent = CONTACT_PHONE; addCopy(phoneEl, CONTACT_PHONE); }
+  function addCopy(host, text) { var b = document.createElement("button"); b.type = "button"; b.className = "copy-inline"; b.textContent = "copy"; b.addEventListener("click", function () { copyText(text, b, "copied"); }); host.appendChild(b); }
+  function copyText(text, statusEl, okLabel) { function done(ok) { if (statusEl.tagName === "BUTTON") { var old = statusEl.textContent; statusEl.textContent = ok ? okLabel : "select & copy"; setTimeout(function () { statusEl.textContent = old; }, 1800); } else { statusEl.textContent = ok ? "Copied." : "Copy blocked here. Select the text above and copy it."; } } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallbackSelect(); done(false); }); } else { fallbackSelect(); done(false); } } function fallbackSelect() { var pre = document.getElementById("f-preview"); try { var r = document.createRange(); r.selectNodeContents(pre); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} }
+  var form = document.getElementById("inquiry");
+  var fields = ["f-name", "f-company", "f-email", "f-phone", "f-type", "f-dates", "f-crew", "f-hours", "f-notes"];
+  try { var saved = JSON.parse(localStorage.getItem("sunset-inquiry-draft") || "null"); if (saved) fields.forEach(function (id) { if (saved[id] != null) document.getElementById(id).value = saved[id]; }); } catch (e) {}
+  form.addEventListener("input", function () { try { var d = {}; fields.forEach(function (id) { d[id] = document.getElementById(id).value; }); localStorage.setItem("sunset-inquiry-draft", JSON.stringify(d)); } catch (e) {} });
+  var lastMessage = "";
+  form.addEventListener("submit", function (ev) { ev.preventDefault(); var err = document.getElementById("f-err"); var name = v("f-name"), email = v("f-email"); if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Add your name and a valid email so we can get back to you."; err.hidden = false; (name ? document.getElementById("f-email") : document.getElementById("f-name")).focus(); return; } err.hidden = true; lastMessage = "Inquiry: Sunset boat hire\n------------------------------\nName: " + name + "\nProduction company: " + (v("f-company") || "—") + "\nEmail: " + email + "\nPhone: " + (v("f-phone") || "—") + "\nProject type: " + v("f-type") + "\nShoot dates: " + (v("f-dates") || "—") + "\nCrew & talent onboard: " + (v("f-crew") || "—") + "\nHours needed: " + v("f-hours") + "\nWhat Sunset needs to do on camera:\n" + (v("f-notes") || "—") + "\n"; document.getElementById("f-preview").textContent = lastMessage; var to = CONTACT_EMAIL || ""; document.getElementById("result-email").textContent = to || "the address above"; var mail = document.getElementById("btn-mail"); mail.href = "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent("Sunset boat hire inquiry — " + v("f-type")) + "&body=" + encodeURIComponent(lastMessage); var res = document.getElementById("f-result"); res.hidden = false; res.scrollIntoView({ behavior: "smooth", block: "nearest" }); }); document.getElementById("btn-copy").addEventListener("click", function () { copyText(lastMessage, document.getElementById("copy-status")); }); function v(id) { return document.getElementById(id).value.trim(); }
+  var vid = document.getElementById("reel-video");
+  var playerBox = vid.parentNode;
+  vid.addEventListener("play", function () { playerBox.classList.add("playing"); });
+  vid.addEventListener("pause", function () { playerBox.classList.remove("playing"); });
+  document.getElementById("btn-jump").addEventListener("click", function (ev) { ev.preventDefault(); var go = function () { vid.currentTime = 96; vid.play().catch(function () {}); }; if (vid.readyState >= 1) go(); else { vid.addEventListener("loadedmetadata", go, { once: true }); vid.load(); } playerBox.scrollIntoView({ behavior: "smooth", block: "center" }); });
+  var CREAMS = { warm: { bg: "#F7F0DF", alt: "#EFE5CC" }, ivory: { bg: "#FBF8F0", alt: "#F3EDDF" }, linen: { bg: "#F4F1E8", alt: "#EBE6D8" }, buttermilk: { bg: "#F8F2DA", alt: "#F1E8C4" }, sand: { bg: "#F0E5C9", alt: "#E7D9B4" }, seafoam: { bg: "#F1F2E5", alt: "#E6E9D6" } };
+  var root = document.documentElement;
+  var sel = document.getElementById("cream-select");
+  var sw = document.getElementById("swatches");
+  var hexes = document.getElementById("hexes");
+  var band = document.getElementById("band-toggle");
+  var picker = document.getElementById("picker");
+  var toggle = document.getElementById("picker-toggle");
+  Object.keys(CREAMS).forEach(function (k) { var b = document.createElement("button"); b.type = "button"; b.style.background = CREAMS[k].bg; b.title = sel.querySelector('[value="' + k + '"]').textContent; b.setAttribute("aria-label", b.title); b.dataset.k = k; b.addEventListener("click", function () { applyCream(k); }); sw.appendChild(b); });
+  function applyCream(k) { if (!CREAMS[k]) k = "warm"; if (k === "warm") root.removeAttribute("data-cream"); else root.setAttribute("data-cream", k); sel.value = k; Array.prototype.forEach.call(sw.children, function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); }); hexes.textContent = "page " + CREAMS[k].bg + " · alt sections " + CREAMS[k].alt; try { localStorage.setItem("sunset-cream", k); } catch (e) {} }
+  function applyBand(green) { if (green) root.removeAttribute("data-band"); else root.setAttribute("data-band", "cream"); band.checked = green; try { localStorage.setItem("sunset-band", green ? "green" : "cream"); } catch (e) {} }
+  sel.addEventListener("change", function () { applyCream(sel.value); });
+  band.addEventListener("change", function () { applyBand(band.checked); });
+  toggle.addEventListener("click", function () { var min = picker.classList.toggle("min"); toggle.textContent = min ? "show" : "hide"; toggle.setAttribute("aria-expanded", min ? "false" : "true"); });
+  var TYPES = { editorial: "Fraunces · Instrument Sans · IBM Plex Mono. Soft serif with true italics; reads like a West Coast travel feature. Warm and welcoming.", callsheet: "Barlow Condensed caps · Barlow · Space Mono. Built like a production document: tall, tight, no-nonsense. Red eyebrows carry the color.", transom: "Bodoni Moda · Source Sans 3 · Courier Prime. High-contrast Didone like a name painted on a transom; screenplay Courier for the spec sheet. Headlines in green.", titlecard: "Archivo Expanded caps · Archivo · Courier Prime. Wide, tracked title-card lettering. The most cinematic and the coolest in tone.", westcoast: "Jost · Newsreader · Space Mono. Geometric mid-century sans over a serif body. 1960s Sunset-magazine modern, relaxed and sunny." };
+  var INKS = { green: "#17302A — ties the text to the green band and the water.", charcoal: "#221F1B — most neutral; red and green stay the only colors on the page.", navy: "#152A3A — cooler, nautical; contrasts hardest with the red.", espresso: "#2C1F17 — warmest; sits into the cream like ink on paper." };
+  var typeSel = document.getElementById("type-select");
+  var inkSel = document.getElementById("ink-select");
+  function applyType(k) { if (!TYPES[k]) k = "editorial"; if (k === "editorial") root.removeAttribute("data-type"); else root.setAttribute("data-type", k); typeSel.value = k; document.getElementById("type-note").textContent = TYPES[k]; try { localStorage.setItem("sunset-type", k); } catch (e) {} }
+  function applyInk(k) { if (!INKS[k]) k = "green"; if (k === "green") root.removeAttribute("data-ink"); else root.setAttribute("data-ink", k); inkSel.value = k; document.getElementById("ink-note").textContent = INKS[k]; try { localStorage.setItem("sunset-ink", k); } catch (e) {} }
+  typeSel.addEventListener("change", function () { applyType(typeSel.value); });
+  inkSel.addEventListener("change", function () { applyInk(inkSel.value); });
+  var startCream = "warm", startBand = true, startType = "editorial", startInk = "green";
+  try { startCream = localStorage.getItem("sunset-cream") || "warm"; startBand = localStorage.getItem("sunset-band") !== "cream"; startType = localStorage.getItem("sunset-type") || "editorial"; startInk = localStorage.getItem("sunset-ink") || "green"; } catch (e) {}
+  applyCream(startCream);
+  applyBand(startBand);
+  applyType(startType);
+  applyInk(startInk);
+})();
+</script>
