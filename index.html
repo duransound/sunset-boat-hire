@@ -46,7 +46,13 @@
     --body-size: 17px;
     --body-lh: 1.55;
     --brand-weight: 600;
+    --r-media: 14px;
+    --r-card: 14px;
   }
+  /* Corner options — media (photos, video, map) and cards (spec sheet, steps, form) */
+  :root[data-corners="subtle"] { --r-media: 3px; --r-card: 3px; }
+  :root[data-corners="square"] { --r-media: 0px; --r-card: 0px; }
+  :root[data-corners="mixed"]  { --r-media: 0px; --r-card: 14px; }
   /* Ink colors — body text and headline base */
   :root[data-ink="charcoal"] { --ink: #221F1B; --ink-soft: #5A544B; }
   :root[data-ink="navy"]     { --ink: #152A3A; --ink-soft: #46596A; }
@@ -262,7 +268,7 @@
   .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
   .hero .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
   .hero .facts span::before { content: "◆ "; color: var(--red); font-size: 9px; vertical-align: 2px; }
-  .hero-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; border-radius: 14px; background: var(--water-2); box-shadow: var(--shadow); margin-top: clamp(28px, 4vw, 44px); }
+  .hero-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; border-radius: var(--r-media); background: var(--water-2); box-shadow: var(--shadow); margin-top: clamp(28px, 4vw, 44px); }
   .hero-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .hero-frame .film-frame { inset: 14px; }
   .hero-frame .rec { top: 22px; right: 26px; }
@@ -270,7 +276,7 @@
 
   /* Painted sunset used behind every photo slot until real photos arrive */
   .slot {
-    position: relative; overflow: hidden; border-radius: 14px; max-width: 100%;
+    position: relative; overflow: hidden; border-radius: var(--r-media); max-width: 100%;
     background:
       radial-gradient(ellipse 70% 45% at 55% 58%, rgba(255, 220, 150, 0.55), transparent 65%),
       linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 42%, var(--sky-3) 58%, var(--water-1) 60%, var(--water-2) 100%);
@@ -333,7 +339,7 @@
   .lb-progress i { display: block; height: 100%; width: 0; background: #E0442F; }
   .lb-thumbs { display: flex; gap: 8px; justify-content: center; overflow-x: auto; scrollbar-width: none; padding: 2px; }
   .lb-thumbs::-webkit-scrollbar { display: none; }
-  .lb-thumbs button { flex: none; width: 72px; height: 48px; padding: 0; border-radius: 6px; overflow: hidden; cursor: pointer; background: #000; border: 2px solid transparent; opacity: 0.45; transition: opacity .2s ease; }
+  .lb-thumbs button { flex: none; width: 72px; height: 48px; padding: 0; border-radius: calc(var(--r-media) * 0.45); overflow: hidden; cursor: pointer; background: #000; border: 2px solid transparent; opacity: 0.45; transition: opacity .2s ease; }
   .lb-thumbs button:hover { opacity: 0.8; }
   .lb-thumbs button[aria-current="true"] { opacity: 1; border-color: #E0442F; }
   .lb-thumbs img { width: 100%; height: 100%; object-fit: cover; }
@@ -352,7 +358,7 @@
   .slot .label .swap { color: #FFD9A6; border: 1px dashed rgba(255,217,166,0.7); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
   .hero .slot { aspect-ratio: 4 / 5; }
   .hero .slot .sun { width: 22%; }
-  .film-frame { position: absolute; inset: 12px; border: 1px solid rgba(255,246,232,0.45); border-radius: 8px; pointer-events: none; }
+  .film-frame { position: absolute; inset: 12px; border: 1px solid rgba(255,246,232,0.45); border-radius: calc(var(--r-media) * 0.6); pointer-events: none; }
   .film-frame::after {
     content: "SUNSET · SF BAY · 24fps"; position: absolute; top: 10px; left: 12px;
     font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,246,232,0.85);
@@ -374,7 +380,7 @@
   .reel .btn-red { margin-top: 26px; }
   .player {
     margin-top: clamp(28px, 4vw, 44px);
-    position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden;
+    position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: var(--r-media); overflow: hidden;
     background: #17302A; display: block; box-shadow: var(--shadow);
   }
   .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; display: block; }
@@ -398,7 +404,7 @@
 
   /* Production notes (call-sheet style) */
   .notes { background: var(--cream-2); }
-  .sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .sheet { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; box-shadow: var(--shadow); }
   .sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 18px 24px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
   .sheet-head b { color: var(--green); font-weight: 500; }
   .spec-grid { display: grid; grid-template-columns: 1fr 1fr; }
@@ -422,7 +428,7 @@
   .loc-list b { font-weight: 500; }
   .loc-list small { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; text-align: right; }
   .map {
-    position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 14px; overflow: hidden;
+    position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: var(--r-media); overflow: hidden;
     background: var(--green-tint); border: 1px solid var(--line);
   }
   .map svg { width: 100%; height: 100%; display: block; }
@@ -430,7 +436,7 @@
   /* Process */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
-  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 24px; display: grid; gap: 10px; align-content: start; }
   .step .n { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(40px * var(--display-scale)); font-weight: var(--em-weight); font-style: var(--em-style); color: var(--red); line-height: 1; }
   .step h3 { font-size: calc(22px * var(--display-scale)); }
   .step p { color: var(--ink-soft); font-size: 15.5px; }
@@ -445,7 +451,7 @@
   .contact-card .row .val { font-family: var(--font-display); font-stretch: var(--display-stretch); font-size: calc(24px * var(--display-scale)); font-weight: var(--display-weight); overflow-wrap: anywhere; }
   .copy-inline { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 12px; color: var(--green); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; cursor: pointer; margin-left: 8px; vertical-align: middle; }
   .copy-inline:hover { background: var(--green-tint); }
-  form { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(20px, 3vw, 32px); display: grid; gap: 16px; box-shadow: var(--shadow); }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: clamp(20px, 3vw, 32px); display: grid; gap: 16px; box-shadow: var(--shadow); }
   .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 560px) { .f-row { grid-template-columns: 1fr; } }
   .field { display: grid; gap: 6px; }
@@ -458,7 +464,7 @@
   .f-note { font-size: 13.5px; color: var(--ink-soft); }
   .f-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
   .err { color: var(--red); font-size: 14px; }
-  .result { background: var(--green-tint); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+  .result { background: var(--green-tint); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; display: grid; gap: 12px; }
   .result h3 { font-size: calc(22px * var(--display-scale)); color: var(--green); }
   .result pre { font-family: var(--font-mono); font-size: 13px; white-space: pre-wrap; margin: 0; background: var(--surface); border-radius: 8px; padding: 14px; max-height: 260px; overflow: auto; color: var(--ink); }
   .result .f-actions { gap: 10px; }
@@ -834,6 +840,14 @@
       </optgroup>
     </select>
     <p class="hexes" id="ink-note"></p>
+    <label for="corners-select" class="eyebrow" style="display:block">Corners</label>
+    <select id="corners-select" aria-label="Corner style">
+      <option value="soft">Soft, 14px (current)</option>
+      <option value="subtle">Subtle, 3px</option>
+      <option value="square">Square</option>
+      <option value="mixed">Square photos, soft panels</option>
+    </select>
+    <p class="hexes" id="corners-note"></p>
     <hr class="rule">
     <div class="actions">
       <button type="button" class="primary" id="picker-shuffle">Shuffle</button>
@@ -1166,8 +1180,15 @@
     charcoal: "#221F1B — most neutral warm; red and green stay the only colors on the page.",
     graphite: "#2A2A2A — pure neutral grey, no warmth at all."
   };
+  var CORNERS = {
+    soft:   "Photos, video, map and panels all at 14px. Friendly and app-like; suits Golden Hour.",
+    subtle: "3px everywhere. Takes the digital edge off without reading as rounded; editorial.",
+    square: "Hard edges everywhere, like a monitor or contact sheet. The most cinematic.",
+    mixed:  "Square photos, video and map; the spec sheet, steps and form keep soft 14px panels."
+  };
   var typeSel = document.getElementById("type-select");
   var inkSel = document.getElementById("ink-select");
+  var cornersSel = document.getElementById("corners-select");
   var comboEl = document.getElementById("picker-combo");
   var fontsLoaded = { editorial: true };
   function ensureFonts(k) {
@@ -1181,7 +1202,7 @@
   function label(selEl) { var o = selEl.options[selEl.selectedIndex]; return o ? o.textContent.split(" — ")[0].replace(" (current)", "") : ""; }
   function updateCombo() {
     if (!comboEl || !typeSel || !inkSel) return;
-    comboEl.textContent = "Combo: " + label(sel) + " · " + label(typeSel) + " · " + label(inkSel);
+    comboEl.textContent = "Combo: " + label(sel) + " · " + label(typeSel) + " · " + label(inkSel) + " · " + (cornersSel ? ({ soft: "Soft corners", subtle: "Subtle corners", square: "Square corners", mixed: "Square photos, soft panels" })[cornersSel.value] : "");
   }
   function applyType(k) {
     if (!TYPES[k]) k = "editorial";
@@ -1200,28 +1221,39 @@
     try { localStorage.setItem("sunset-ink", k); } catch (e) {}
     updateCombo();
   }
+  function applyCorners(k) {
+    if (!CORNERS[k]) k = "soft";
+    if (k === "soft") root.removeAttribute("data-corners"); else root.setAttribute("data-corners", k);
+    cornersSel.value = k;
+    document.getElementById("corners-note").textContent = CORNERS[k];
+    try { localStorage.setItem("sunset-corners", k); } catch (e) {}
+    updateCombo();
+  }
+  cornersSel.addEventListener("change", function () { applyCorners(cornersSel.value); });
   typeSel.addEventListener("change", function () { applyType(typeSel.value); });
   inkSel.addEventListener("change", function () { applyInk(inkSel.value); });
 
   function pick(obj) { var ks = Object.keys(obj); return ks[Math.floor(Math.random() * ks.length)]; }
   document.getElementById("picker-shuffle").addEventListener("click", function () {
-    applyCream(pick(CREAMS)); applyType(pick(TYPES)); applyInk(pick(INKS));
+    applyCream(pick(CREAMS)); applyType(pick(TYPES)); applyInk(pick(INKS)); applyCorners(pick(CORNERS));
   });
   document.getElementById("picker-reset").addEventListener("click", function () {
-    applyCream("warm"); applyBand(true); applyType("editorial"); applyInk("green");
+    applyCream("warm"); applyBand(true); applyType("editorial"); applyInk("green"); applyCorners("soft");
   });
 
-  var startCream = "warm", startBand = true, startType = "editorial", startInk = "green";
+  var startCream = "warm", startBand = true, startType = "editorial", startInk = "green", startCorners = "soft";
   try {
     startCream = localStorage.getItem("sunset-cream") || "warm";
     startBand = localStorage.getItem("sunset-band") !== "cream";
     startType = localStorage.getItem("sunset-type") || "editorial";
     startInk = localStorage.getItem("sunset-ink") || "green";
+    startCorners = localStorage.getItem("sunset-corners") || "soft";
   } catch (e) {}
   applyCream(startCream);
   applyBand(startBand);
   applyType(startType);
   applyInk(startInk);
+  applyCorners(startCorners);
 })();
 </script>
 
