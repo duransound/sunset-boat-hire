@@ -295,6 +295,57 @@
   .slot .label b { font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); font-size: calc(18px * var(--display-scale)); letter-spacing: 0; }
   .slot .label .todo { color: #FFD9A6; border: 1px dashed rgba(255,217,166,0.7); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
   .slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  /* Clickable photos → slideshow */
+  .gallery .slot.has-photo, .hero-frame { cursor: zoom-in; }
+  .gallery .slot.has-photo img { transition: transform .5s ease; }
+  .gallery .slot.has-photo:hover img { transform: scale(1.03); }
+  .gallery .slot .zoom { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(13,20,17,0.55); color: #FFF6E8; opacity: 0; transition: opacity .2s ease; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .gallery .slot .zoom svg { width: 14px; height: 14px; }
+  .gallery .slot:hover .zoom, .gallery .slot:focus-visible .zoom { opacity: 1; }
+  @media (hover: none) { .gallery .slot .zoom { opacity: 0.85; } }
+
+  .lb { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #0D1411; color: #F7F0DF; overflow: hidden; }
+  .lb[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+  .lb::backdrop { background: #0D1411; }
+  .lb:focus { outline: none; }
+  .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: calc(14px + env(safe-area-inset-top, 0px)) clamp(14px, 3vw, 28px) 10px; }
+  .lb-count { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: rgba(247,240,223,0.75); }
+  .lb-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(247,240,223,0.35); }
+  .lb.playing .lb-dot { background: #E0442F; animation: blink 1.4s infinite; }
+  .lb-tools { display: flex; gap: 8px; }
+  .lb-btn { display: inline-flex; align-items: center; gap: 7px; font: 500 13px/1 var(--font-body); color: #F7F0DF; background: rgba(247,240,223,0.08); border: 1px solid rgba(247,240,223,0.22); border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+  .lb-btn svg { width: 13px; height: 13px; }
+  .lb-btn:hover { background: rgba(247,240,223,0.16); }
+  .lb-btn[aria-pressed="true"] { background: var(--red); border-color: var(--red); }
+  .lb-stage { position: relative; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 clamp(8px, 7vw, 96px); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+  .lb-stage img { width: 100%; height: 100%; object-fit: contain; transition: opacity .35s ease; }
+  .lb-stage img.lowres { max-width: 960px; max-height: 720px; }
+  .lb-stage img.fading { opacity: 0; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #F7F0DF; background: rgba(13,20,17,0.55); border: 1px solid rgba(247,240,223,0.25); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .lb-nav:hover { background: rgba(247,240,223,0.16); }
+  .lb-nav svg { width: 22px; height: 22px; }
+  .lb-prev { left: clamp(8px, 2vw, 24px); }
+  .lb-next { right: clamp(8px, 2vw, 24px); }
+  .lb-bottom { display: grid; gap: 12px; padding: 12px clamp(14px, 3vw, 28px) calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .lb-caption { text-align: center; min-height: 1.3em; color: #F7F0DF; font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-tracking); font-size: calc(clamp(18px, 2.2vw, 26px) * var(--display-scale)); line-height: 1.2; }
+  .lb-caption small { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #FFD9A6; vertical-align: middle; }
+  .lb-progress { height: 2px; background: rgba(247,240,223,0.14); border-radius: 2px; overflow: hidden; width: min(640px, 100%); justify-self: center; }
+  .lb-progress i { display: block; height: 100%; width: 0; background: #E0442F; }
+  .lb-thumbs { display: flex; gap: 8px; justify-content: center; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+  .lb-thumbs::-webkit-scrollbar { display: none; }
+  .lb-thumbs button { flex: none; width: 72px; height: 48px; padding: 0; border-radius: 6px; overflow: hidden; cursor: pointer; background: #000; border: 2px solid transparent; opacity: 0.45; transition: opacity .2s ease; }
+  .lb-thumbs button:hover { opacity: 0.8; }
+  .lb-thumbs button[aria-current="true"] { opacity: 1; border-color: #E0442F; }
+  .lb-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 720px) {
+    .lb-btn .lbl { display: none; }
+    .lb-btn { padding: 10px; }
+    .lb-stage { padding: 0; }
+    .lb-nav { width: 42px; height: 42px; }
+    .lb-thumbs { justify-content: flex-start; }
+    .lb-thumbs button { width: 54px; height: 38px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .lb-stage img, .gallery .slot.has-photo img { transition: none; } .lb.playing .lb-dot { animation: none; } }
   .slot.has-photo .sun { display: none; }
   .slot.has-photo::before { display: none; }
   .slot.has-photo .label { background: linear-gradient(transparent, rgba(23,48,42,0.75)); inset: auto 0 0 0; padding: 40px 14px 14px; }
@@ -505,6 +556,7 @@
         <p class="eyebrow">Gallery</p>
         <h2>Every angle a location scout would ask for.</h2>
         <p>Under sail, at the slip, and in the cockpit. Frames marked low-res are being reshot.</p>
+        <div><button type="button" class="btn btn-ghost" id="btn-slideshow"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>Play the slideshow</button></div>
       </div>
       <div class="gallery">
         <div class="slot has-photo"><img src="img/side.jpg" alt="Sunset at her slip: cream hull, dark green bottom, teak trim, bronze portholes and a green dodger"><div class="label"><b>At the slip: cream, green, teak and bronze</b></div></div>
@@ -680,6 +732,27 @@
     </div>
   </section>
 </main>
+
+<dialog class="lb" id="lightbox" aria-label="Photo slideshow" autofocus>
+  <div class="lb-top">
+    <p class="lb-count"><i class="lb-dot" aria-hidden="true"></i><span id="lb-count">01 / 07</span></p>
+    <div class="lb-tools">
+      <button type="button" class="lb-btn" id="lb-play" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 14 14"><path id="lb-play-icon" d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg><span class="lbl" id="lb-play-label">Play</span></button>
+      <button type="button" class="lb-btn" id="lb-fs"><svg aria-hidden="true" viewBox="0 0 14 14"><path d="M1.5 5V1.5H5M9 1.5h3.5V5M12.5 9v3.5H9M5 12.5H1.5V9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="lbl">Full screen</span></button>
+      <button type="button" class="lb-btn" id="lb-close" aria-label="Close slideshow"><svg aria-hidden="true" viewBox="0 0 14 14"><path d="M2.5 2.5l9 9M11.5 2.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg><span class="lbl">Close</span></button>
+    </div>
+  </div>
+  <div class="lb-stage" id="lb-stage">
+    <img id="lb-img" alt="" draggable="false">
+    <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+    <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next photo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+  </div>
+  <div class="lb-bottom">
+    <p class="lb-caption" id="lb-caption" aria-live="polite"></p>
+    <div class="lb-progress" aria-hidden="true"><i id="lb-bar"></i></div>
+    <div class="lb-thumbs" id="lb-thumbs"></div>
+  </div>
+</dialog>
 
 <aside class="picker" id="picker" aria-label="Background options">
   <p class="eyebrow"><span>Background</span><button type="button" id="picker-toggle" aria-expanded="true">hide</button></p>
@@ -868,6 +941,138 @@
     if (vid.readyState >= 1) go(); else { vid.addEventListener("loadedmetadata", go, { once: true }); vid.load(); }
     playerBox.scrollIntoView({ behavior: "smooth", block: "center" });
   });
+
+  // ---- Photo slideshow (lightbox) ----
+  (function () {
+    var lb = document.getElementById("lightbox");
+    if (!lb || typeof lb.showModal !== "function") return;
+    var imgEl = document.getElementById("lb-img");
+    var capEl = document.getElementById("lb-caption");
+    var countEl = document.getElementById("lb-count");
+    var bar = document.getElementById("lb-bar");
+    var thumbs = document.getElementById("lb-thumbs");
+    var playBtn = document.getElementById("lb-play");
+    var playLbl = document.getElementById("lb-play-label");
+    var playIcon = document.getElementById("lb-play-icon");
+    var fsBtn = document.getElementById("lb-fs");
+    var DUR = 4500;
+    var slides = [];
+    var hero = document.querySelector(".hero-frame img");
+    if (hero) slides.push({ el: document.querySelector(".hero-frame"), src: hero.getAttribute("src"), alt: hero.alt, cap: "Under sail on the Bay, from the commercial", low: false });
+    document.querySelectorAll(".gallery .slot.has-photo").forEach(function (slot) {
+      var im = slot.querySelector("img"), b = slot.querySelector(".label b");
+      slides.push({ el: slot, src: im.getAttribute("src"), alt: im.alt, cap: b ? b.textContent : im.alt, low: !!slot.querySelector(".swap") });
+    });
+    if (!slides.length) return;
+    var idx = 0, timer = null, playing = false, opener = null;
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+    slides.forEach(function (s, i) {
+      s.el.setAttribute("tabindex", "0");
+      s.el.setAttribute("role", "button");
+      s.el.setAttribute("aria-label", "Open photo " + (i + 1) + " of " + slides.length + ": " + s.cap);
+      if (s.el.classList.contains("slot")) {
+        var z = document.createElement("span");
+        z.className = "zoom"; z.setAttribute("aria-hidden", "true");
+        z.innerHTML = '<svg viewBox="0 0 14 14"><path d="M1.5 5V1.5H5M9 1.5h3.5V5M12.5 9v3.5H9M5 12.5H1.5V9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+        s.el.appendChild(z);
+      }
+      s.el.addEventListener("click", function () { open(i, false, s.el); });
+      s.el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i, false, s.el); } });
+      var t = document.createElement("button");
+      t.type = "button"; t.setAttribute("aria-label", "Photo " + (i + 1) + ": " + s.cap);
+      t.innerHTML = '<img src="' + s.src + '" alt="" loading="lazy">';
+      t.addEventListener("click", function () { show(i); restartTimer(); });
+      thumbs.appendChild(t);
+    });
+
+    function show(i) {
+      idx = (i + slides.length) % slides.length;
+      var s = slides[idx];
+      imgEl.classList.add("fading");
+      var next = new Image();
+      next.onload = next.onerror = function () {
+        imgEl.src = s.src; imgEl.alt = s.alt;
+        imgEl.classList.toggle("lowres", s.low);
+        requestAnimationFrame(function () { imgEl.classList.remove("fading"); });
+      };
+      next.src = s.src;
+      capEl.innerHTML = "";
+      capEl.appendChild(document.createTextNode(s.cap));
+      if (s.low) { var sm = document.createElement("small"); sm.textContent = "Low-res · being reshot"; capEl.appendChild(sm); }
+      countEl.textContent = pad(idx + 1) + " / " + pad(slides.length);
+      Array.prototype.forEach.call(thumbs.children, function (b, j) {
+        b.setAttribute("aria-current", j === idx ? "true" : "false");
+        if (j === idx && b.scrollIntoView) b.scrollIntoView({ block: "nearest", inline: "center" });
+      });
+      [idx + 1, idx - 1].forEach(function (j) { var pre = new Image(); pre.src = slides[(j + slides.length) % slides.length].src; });
+    }
+    function runBar() {
+      bar.style.transition = "none"; bar.style.width = "0";
+      if (!playing) return;
+      void bar.offsetWidth;
+      bar.style.transition = "width " + DUR + "ms linear"; bar.style.width = "100%";
+    }
+    function restartTimer() {
+      clearTimeout(timer);
+      runBar();
+      if (playing) timer = setTimeout(function () { show(idx + 1); restartTimer(); }, DUR);
+    }
+    function setPlaying(on) {
+      playing = on;
+      lb.classList.toggle("playing", on);
+      playBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      playLbl.textContent = on ? "Pause" : "Play";
+      playIcon.setAttribute("d", on ? "M3 1.5h3v11H3zM8 1.5h3v11H8z" : "M3 1.5v11l9-5.5z");
+      restartTimer();
+    }
+    function open(i, autoplay, from) {
+      opener = from || null;
+      if (!lb.open) lb.showModal();
+      document.documentElement.style.overflow = "hidden";
+      show(i);
+      setPlaying(!!autoplay);
+    }
+    function close() { if (lb.open) lb.close(); }
+    lb.addEventListener("close", function () {
+      setPlaying(false);
+      document.documentElement.style.overflow = "";
+      if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+      if (opener && opener.focus) opener.focus({ preventScroll: true });
+    });
+
+    document.getElementById("lb-prev").addEventListener("click", function () { show(idx - 1); restartTimer(); });
+    document.getElementById("lb-next").addEventListener("click", function () { show(idx + 1); restartTimer(); });
+    document.getElementById("lb-close").addEventListener("click", close);
+    playBtn.addEventListener("click", function () { setPlaying(!playing); });
+    var ssBtn = document.getElementById("btn-slideshow");
+    if (ssBtn) ssBtn.addEventListener("click", function () { open(0, true, ssBtn); });
+
+    if (document.fullscreenEnabled && lb.requestFullscreen) {
+      fsBtn.addEventListener("click", function () {
+        if (document.fullscreenElement) document.exitFullscreen().catch(function () {});
+        else lb.requestFullscreen().catch(function () {});
+      });
+    } else { fsBtn.hidden = true; }
+
+    lb.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); show(idx + 1); restartTimer(); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); show(idx - 1); restartTimer(); }
+      else if (e.key === " " && !(e.target.closest && e.target.closest("button"))) { e.preventDefault(); setPlaying(!playing); }
+      else if ((e.key === "f" || e.key === "F") && !fsBtn.hidden) { fsBtn.click(); }
+    });
+    var stage = document.getElementById("lb-stage");
+    stage.addEventListener("click", function (e) { if (e.target === stage) close(); });
+    var x0 = null, y0 = null;
+    stage.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") { x0 = e.clientX; y0 = e.clientY; } });
+    stage.addEventListener("pointerup", function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { show(idx + (dx < 0 ? 1 : -1)); restartTimer(); }
+    });
+    stage.addEventListener("pointercancel", function () { x0 = null; });
+    document.addEventListener("visibilitychange", function () { if (document.hidden && playing) setPlaying(false); });
+  })();
 
   // ---- Background picker ----
   var CREAMS = {
